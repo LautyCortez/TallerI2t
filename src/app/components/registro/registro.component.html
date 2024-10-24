@@ -1,1 +1,32 @@
-<p>registro works!</p>
+<h2>Registro de Usuario</h2>
+<form (ngSubmit)="registrar()">
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="usuario.nombre" name="nombre" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Apellido</mat-label>
+    <input matInput [(ngModel)]="usuario.apellido" name="apellido" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="usuario.email" name="email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput [(ngModel)]="usuario.password" name="password" type="password" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Rol</mat-label>
+    <mat-select [(ngModel)]="usuario.rol" name="rol" required>
+      <mat-option value="inquilino">Inquilino</mat-option>
+      <mat-option value="anfitrion">Anfitrión</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" color="primary">Registrarse</button>
+</form>
