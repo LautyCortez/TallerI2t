@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { UsuariosModule } from './models/usuarios/usuarios.module';
+
+
 
 /* Imports Angular Material */
 import { MatCardModule } from '@angular/material/card';
@@ -26,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     AppComponent,
     RegistroComponent,
     LoginComponent
+
   ],
   imports: [
     BrowserModule,

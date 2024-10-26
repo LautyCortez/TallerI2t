@@ -4,7 +4,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 
 
+import { RegistroComponent } from './components/registro/registro.component';
+
 const routes: Routes = [
+  { path: 'registro', component: RegistroComponent },
   
 /*   { path: '', redirectTo: '/home', pathMatch: 'full' },  */
 { path: '', redirectTo: '/login', pathMatch: 'full' },  
