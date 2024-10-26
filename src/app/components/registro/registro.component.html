@@ -1,1 +1,55 @@
-<p>registro works!</p>
+<div class="login-container">
+    <div class="background-image"></div>
+
+    <div class="login-form-container">
+        <mat-card class="login-card">
+            <div class="login-title-container">
+                <mat-card-title>Registro de Usuario</mat-card-title>
+                <mat-card-subtitle>Crea tu cuenta en Hostease.</mat-card-subtitle>
+            </div>
+            <mat-card-content>
+                <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Nombre y Apellido</mat-label>
+                        <input matInput formControlName="nombreApellido" placeholder="Ingresa tu nombre y apellido" />
+                        <mat-error *ngIf="registroForm.get('nombreApellido')?.invalid">Nombre y apellido son requeridos</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>DNI</mat-label>
+                        <input matInput formControlName="dni" placeholder="Ingresa tu DNI" type="text" />
+                        <mat-error *ngIf="registroForm.get('dni')?.invalid">DNI es requerido</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput formControlName="email" placeholder="Ingresa tu correo" type="email" />
+                        <mat-error *ngIf="registroForm.get('email')?.invalid">Correo electrónico no válido</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput formControlName="password" placeholder="Ingresa tu contraseña" type="password" />
+                        <mat-error *ngIf="registroForm.get('password')?.invalid">Contraseña es requerida</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="rol">
+                            <mat-option value="inquilino">Inquilino</mat-option>
+                            <mat-option value="anfitrion">Anfitrión</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="registroForm.get('rol')?.invalid">Debes seleccionar un rol</mat-error>
+                    </mat-form-field>
+                    <div class="button-container">
+                        <button mat-raised-button color="accent" type="submit" [disabled]="registroForm.invalid">Registrarse</button>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <a routerLink="/login" class="register-link">¿Ya tienes una cuenta? Inicia sesión</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
