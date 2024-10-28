@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
   declarations: [
     AppComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
 
   ],
   imports: [

@@ -50,7 +50,7 @@
     text-decoration: underline;
 }
 
-/* Estilo para los inputs */
+
 .login-form-container input,
 .login-form-container mat-select {
     padding: 10px;
@@ -58,7 +58,7 @@
     border-radius: 5px;
     transition: border-color 0.3s, box-shadow 0.3s;
     width: 90%;
-    margin: 0; /* Eliminar el margen para quitar la separación */
+    margin: 0; 
 }
 
 .login-form-container input:focus,
@@ -68,7 +68,6 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Estilo para el botón */
 .button-container {
     display: flex;
     justify-content: center;
