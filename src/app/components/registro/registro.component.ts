@@ -4,15 +4,12 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
-  templateUrl: './registro.component.html'
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css'] 
 })
 export class RegistroComponent {
-  usuario: UsuariosModule = new usuario();
-
 
   registroForm: any;
-
-
 
 registrar(): void {
 
