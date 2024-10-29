@@ -11,8 +11,6 @@ export class RegistroComponent {
 
   registroForm: any;
 
-
-
 registrar(): void {
 
 
