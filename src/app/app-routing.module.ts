@@ -8,7 +8,6 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
-
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'dashboard', component: DashboardComponent},

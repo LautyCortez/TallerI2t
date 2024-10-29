@@ -42,7 +42,8 @@ import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hosp
     CancelarReservaComponent,
     AltaHospedajeComponent,
     ModificacionHospedajeComponent,
-    EliminarHospedajeComponent
+    EliminarHospedajeComponent,
+
 
   ],
   imports: [
