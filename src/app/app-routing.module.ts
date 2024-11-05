@@ -11,12 +11,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'dashboard', component: DashboardComponent},
-/*   { path: '', redirectTo: '/home', pathMatch: 'full' },  */
-{ path: '', redirectTo: '/login', pathMatch: 'full' },  
-{ path: 'login', component: LoginComponent },  
-{path: 'registro', component: RegistroComponent},
-
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
