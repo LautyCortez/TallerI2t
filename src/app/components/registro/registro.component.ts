@@ -23,7 +23,7 @@ export class RegistroComponent {
 
   registrar() {
     if (this.registroForm.valid) {
-      this.usuarioService.registrar(this.registroForm.value).subscribe(response => {
+      this.usuarioService.register(this.registroForm.value).subscribe(response => {
         if (response.success) {
           alert('Registro exitoso');
           this.router.navigate(['/login']);
