@@ -23,12 +23,27 @@ import { FormGroup } from '@angular/forms';
 import { MatOptgroup } from '@angular/material/core';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReservarHospedajeComponent } from './components/inquilino/reservar-hospedaje/reservar-hospedaje.component';
+import { ModificarReservaComponent } from './components/inquilino/modificar-reserva/modificar-reserva.component';
+import { CancelarReservaComponent } from './components/inquilino/cancelar-reserva/cancelar-reserva.component';
+import { AltaHospedajeComponent } from './components/anfitrion/alta-hospedaje/alta-hospedaje.component';
+import { ModificacionHospedajeComponent } from './components/anfitrion/modificacion-hospedaje/modificacion-hospedaje.component';
+import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hospedaje/eliminar-hospedaje.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
     LoginComponent,
+    DashboardComponent,
+    ReservarHospedajeComponent,
+    ModificarReservaComponent,
+    CancelarReservaComponent,
+    AltaHospedajeComponent,
+    ModificacionHospedajeComponent,
+    EliminarHospedajeComponent,
+
 
   ],
   imports: [
