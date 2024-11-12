@@ -1,53 +1,35 @@
-<div class="contenido-dashboard">
-  <div class="main-content">
-    <h2>Seleccione una opcion</h2>
-  </div>
-
+<div *ngIf="userRole">
   <div [ngSwitch]="userRole">
-    <div *ngSwitchCase="'inquilino'">
+    <div *ngSwitchCase="'INQUILINO'">
       <mat-card>
         <mat-card-content>
-          <h3>Opciones para Inquilinos</h3>
+          <h3>Contenido para inquilinos</h3>
           <ul>
-            <li>
-              <a routerLink="/inquilino/reservar-hospedaje">Nueva Reserva</a>
-            </li>
-            <li><a routerLink="/inquilino/modificar-reserva">Modificar una Reserva</a></li>
-            <li>
-              <a routerLink="/inquilino/cancelar-reserva">Cancelar Reserva</a>
-            </li>
+            <li><a routerLink="/inquilino/gestion-agenda">Gestión de Agenda</a></li>
           </ul>
         </mat-card-content>
       </mat-card>
     </div>
-
-    <div *ngSwitchCase="'anfitrion'">
+    <div *ngSwitchCase="'ANFITRION'">
       <mat-card>
         <mat-card-content>
-          <h3>Opciones para Operador</h3>
+          <h3>Contenido para anfitriones</h3>
           <ul>
-            <!--          falta implementar sus funciones-->
+            <li><a routerLink="/anfitrion/gestion-agenda">Gestión de Agenda</a></li>
           </ul>
         </mat-card-content>
       </mat-card>
     </div>
-
-    <div *ngSwitchCase="'admin'">
+    <div *ngSwitchCase="'ADMIN'">
       <mat-card>
         <mat-card-content>
-          <h3>Opciones para Médico</h3>
+          <h3>Contenido para administradores</h3>
           <ul>
-            <li>
-              <a routerLink="/medico/turnos-programados">Turnos Programados</a>
-            </li>
-            <li>
-              <a routerLink="/medico/gestion-agenda">Gestión de Agenda</a>
-            </li>
+            <li><a routerLink="/admin/gestion-agenda">Gestión de Agenda</a></li>
           </ul>
         </mat-card-content>
       </mat-card>
     </div>
-
     <div *ngSwitchDefault>
       <mat-card>
         <mat-card-content>

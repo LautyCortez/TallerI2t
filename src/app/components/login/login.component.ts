@@ -23,19 +23,23 @@ export class LoginComponent {
       const { username, password } = this.loginForm.value;
       this.usuarioService.login(username, password).subscribe({
         next: (response) => {
-        console.log(response); // Log the response for debugging
-        if (response.token) {
-          console.log(response);
-          localStorage.setItem('token', response.token);
-          // localStorage.setItem('userRole', response.role);
-          this.router.navigate(['/dashboard']);
-        } else {
-          alert('Credenciales incorrectas');
+          console.log(response); // Log the response for debugging
+          if (response.token) {
+            localStorage.clear(); // Limpiar todo el localStorage
+            localStorage.setItem('token', response.token);
+            if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
+              localStorage.setItem('userRole', response.tipoUsuarios[0].nombre.toUpperCase());
+            }
+            this.router.navigate(['/dashboard']);
+          } else {
+            alert('Credenciales incorrectas');
+          }
+        },
+        error: err => {
+          console.error(err); // Log any error for debugging
+          alert('Error en el login');
         }
-      }, error: err => {
-        console.error(err); // Log any error for debugging
-        alert('Error en el login');
-      }})
-    };
+      });
+    }
   }
 }
