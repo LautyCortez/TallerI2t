@@ -15,6 +15,8 @@ import { UsuariosModule } from './models/usuarios/usuarios.module';
 
 
 /* Imports Angular Material */
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -54,7 +56,9 @@ import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hosp
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
     MatButtonModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     MatSelectModule,
     HttpClientModule,
