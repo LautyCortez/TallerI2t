@@ -10,9 +10,9 @@
             <mat-card-content>
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Correo electrónico</mat-label>
-                        <input matInput formControlName="email" placeholder="Ingresa tu correo" type="email" />
-                        <mat-error *ngIf="loginForm.get('email')?.invalid">Correo electrónico no válido</mat-error>
+                        <mat-label>Nombre de usuario</mat-label>
+                        <input matInput formControlName="username" placeholder="Ingresa tu nombre de usuario" type="text" />
+                        <mat-error *ngIf="loginForm.get('username')?.invalid">Nombre de usuario no válido</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
