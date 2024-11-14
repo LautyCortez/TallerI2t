@@ -38,6 +38,7 @@ export class AuthService {
   }
 
   getUserRole(): string | null {
-    return localStorage.getItem('userRole'); // Leer el rol directamente del localStorage
+    return localStorage.getItem('userRole'); 
+
   }
 }

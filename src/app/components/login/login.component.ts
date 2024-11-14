@@ -41,7 +41,8 @@ export class LoginComponent {
             localStorage.setItem('token', response.token);
             if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
               const userRole = response.tipoUsuarios[0].nombre.toUpperCase();
-              localStorage.setItem('userRole', userRole); // Guardar el rol en localStorage
+              localStorage.setItem('userRole', userRole);
+               // Guardar el rol en localStorage
               this.router.navigate(['/dashboard']); // Redirigir al dashboard
             }
           } else {
@@ -56,3 +57,32 @@ export class LoginComponent {
     }
   }
 }
+
+
+
+/* login() {
+  if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.usuarioService.login(username, password).subscribe({
+          next: (response) => {
+              console.log(response); 
+              if (response.token) {
+                  localStorage.clear(); // Limpiar todo el localStorage
+                  localStorage.setItem('token', response.token);
+                  if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
+                      const userRole = response.tipoUsuarios[0].nombre.toUpperCase();
+                      localStorage.setItem('userRole', userRole);
+                      localStorage.setItem('usuario', response.nombre); // Guardar el nombre del usuario
+                      this.router.navigate(['/dashboard']); // Redirigir al dashboard
+                  }
+              } else {
+                  alert('Credenciales incorrectas');
+              }
+          },
+          error: err => {
+              console.error(err);
+              alert('Error en el login');
+          }
+      });
+  }
+} */
