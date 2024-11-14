@@ -23,7 +23,7 @@ export class LoginComponent {
       const { username, password } = this.loginForm.value;
       this.usuarioService.login(username, password).subscribe({
         next: (response) => {
-          console.log(response); // Log the response for debugging
+          console.log(response); 
           if (response.token) {
             localStorage.clear(); // Limpiar todo el localStorage
             localStorage.setItem('token', response.token);
@@ -36,7 +36,7 @@ export class LoginComponent {
           }
         },
         error: err => {
-          console.error(err); // Log any error for debugging
+          console.error(err);
           alert('Error en el login');
         }
       });

@@ -5,7 +5,9 @@
         <mat-card-content>
           <h3>Contenido para inquilinos</h3>
           <ul>
-            <li><a routerLink="/inquilino/gestion-agenda">Gestión de Agenda</a></li>
+            <li><a routerLink="/inquilino/reservar-hospedaje">Reservar Hospedaje</a></li>
+            <li><a routerLink="/inquilino/modificar-reserva">Modificar Reserva</a></li>
+            <li><a routerLink="/inquilino/cancelar-reserva">Cancelar Reserva</a></li>
           </ul>
         </mat-card-content>
       </mat-card>
@@ -15,17 +17,20 @@
         <mat-card-content>
           <h3>Contenido para anfitriones</h3>
           <ul>
-            <li><a routerLink="/anfitrion/gestion-agenda">Gestión de Agenda</a></li>
+            <li><a routerLink="/anfitrion/alta-hospedaje">Alta de Hospedaje</a></li>
+            <li><a routerLink="/anfitrion/modificacion-hospedaje">Modificar Hospedaje</a></li>
+            <li><a routerLink="/anfitrion/eliminar-hospedaje">Eliminar Hospedaje</a></li>
           </ul>
         </mat-card-content>
       </mat-card>
     </div>
-    <div *ngSwitchCase="'ADMIN'">
+    <div *ngSwitchCase="'ADMINISTRADOR'">
       <mat-card>
         <mat-card-content>
           <h3>Contenido para administradores</h3>
           <ul>
-            <li><a routerLink="/admin/gestion-agenda">Gestión de Agenda</a></li>
+            <li><a routerLink="/admin/gestionar-usuarios">Gestionar Usuarios</a></li>
+            <li><a routerLink="/admin/reportes">Ver Reportes</a></li>
           </ul>
         </mat-card-content>
       </mat-card>

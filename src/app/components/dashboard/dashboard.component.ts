@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,22 +9,27 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   userRole: string | null = '';
 
-  constructor() {
+  constructor(private router: Router) {
     this.userRole = localStorage.getItem('userRole'); // Obtener el rol del localStorage
+    this.redirectBasedOnRole();
   }
 
-  // Método para determinar el contenido a mostrar
-  getContentBasedOnRole() {
-    switch (this.userRole) {
-      case 'inquilino':
-        return 'Contenido para inquilinos';
-      case 'anfitrion':
-        return 'Contenido para anfitriones';
-      case 'admin':
-        return 'Contenido para administradores';
-      default:
-        return 'Contenido por defecto';
+  redirectBasedOnRole() {
+    if (this.userRole) {
+      switch (this.userRole.toUpperCase()) {
+        case 'INQUILINO':
+          this.router.navigate(['/inquilino/gestion-agenda']);
+          break;
+        case 'ANFITRION':
+          this.router.navigate(['/anfitrion/gestion-agenda']);
+          break;
+        case 'ADMIN':
+          this.router.navigate(['/admin/gestion-agenda']);
+          break;
+        default:
+          this.router.navigate(['/']); // Redirigir a la página de inicio o a un error
+          break;
+      }
     }
   }
-
 }

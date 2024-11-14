@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { UsuariosModule } from './models/usuarios/usuarios.module';
+
 
 
 
