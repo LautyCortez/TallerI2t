@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,28 +10,13 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   userRole: string | null = '';
+  usuario: Usuario | null = null;
 
-  constructor(private router: Router) {
-    this.userRole = localStorage.getItem('userRole'); // Obtener el rol del localStorage
-    this.redirectBasedOnRole();
-  }
-
-  redirectBasedOnRole() {
-    if (this.userRole) {
-        switch (this.userRole.toUpperCase()) {
-            case 'INQUILINO':
-                this.router.navigate(['/inquilino/reservar-hospedaje']); // Cambia a la ruta que desees
-                break;
-            case 'ANFITRION':
-                this.router.navigate(['/anfitrion/alta-hospedaje']); // Cambia a la ruta que desees
-                break;
-            case 'ADMIN':
-                this.router.navigate(['/admin/gestionar-usuarios']); // Cambia a la ruta que desees
-                break;
-            default:
-                this.router.navigate(['/']); // Redirigir a la página de inicio o a un error
-                break;
-        }
+  constructor(private router: Router, private authService: AuthService) {
+    this.usuario = this.authService.getCurrentUser(); // Obtener el usuario actual
+    this.userRole = this.authService.getUserRole(); // Obtener el rol del localStorage
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']); // Redirigir a login si no está logueado
     }
-}
+  }
 }

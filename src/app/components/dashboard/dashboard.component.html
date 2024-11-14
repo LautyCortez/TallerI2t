@@ -4,39 +4,77 @@
   <div class="main-content">
       <mat-card>
           <mat-card-content>
-              <h3>Bienvenido al Dashboard</h3>
-              <div *ngIf="userRole">
-                  <div [ngSwitch]="userRole">
-                      <div *ngSwitchCase="'INQUILINO'">
-                          <h4>Contenido para inquilinos</h4>
-                          <ul>
-                              <li><a routerLink="/inquilino/reservar-hospedaje">Reservar Hospedaje</a></li>
-                              <li><a routerLink="/inquilino/modificar-reserva">Modificar Reserva</a></li>
-                              <li><a routerLink="/inquilino/cancelar-reserva">Cancelar Reserva</a></li>
-                          </ul>
-                      </div>
-                      <div *ngSwitchCase="'ANFITRION'">
-                          <h4>Contenido para anfitriones</h4>
-                          <ul>
-                              <li><a routerLink="/anfitrion/altaHospedaje">Alta de Hospedaje</a></li>
-                              <li><a routerLink="/anfitrion/modificacion-hospedaje">Modificar Hospedaje</a></li>
-                              <li><a routerLink="/anfitrion/eliminar-hospedaje">Eliminar Hospedaje</a></li>
-                          </ul>
-                      </div>
-                      <div *ngSwitchCase="'ADMINISTRADOR'">
-                          <h4>Contenido para administradores</h4>
-                          <ul>
-                              <li><a routerLink="/admin/gestionar-usuarios">Gestionar Usuarios</a></li>
-                              <li><a routerLink="/admin/reportes">Ver Reportes</a></li>
-                          </ul>
-                      </div>
-                      <div *ngSwitchDefault>
-                          <h4>Rol no reconocido</h4>
-                          <p>No se han encontrado opciones para tu rol de usuario.</p>
-                      </div>
-                  </div>
-              </div>
+              <h3>Bienvenido/a</h3>
+              <p>Selecciona una opción para comenzar</p>
           </mat-card-content>
       </mat-card>
+
+      <div [ngSwitch]="userRole" class="options-grid">
+          <!-- Inquilino -->
+          <div *ngSwitchCase="'INQUILINO'" class="options-container">
+              <mat-card class="option-card" routerLink="/inquilino/reservar-hospedaje">
+                  <mat-icon>event_available</mat-icon>
+                  <h3>Reservar Hospedaje</h3>
+                  <p>Agenda una nueva reserva</p>
+              </mat-card>
+
+              <mat-card class="option-card" routerLink="/inquilino/modificar-reserva">
+                  <mat-icon>calendar_today</mat-icon>
+                  <h3>Modificar Reserva</h3>
+                  <p>Ver y gestionar tus reservas</p>
+              </mat-card>
+
+              <mat-card class="option-card" routerLink="/inquilino/cancelar-reserva">
+                  <mat-icon>cancel</mat-icon>
+                  <h3>Cancelar Reserva</h3>
+                  <p>Gestiona tus reservas</p>
+              </mat-card>
+          </div>
+
+          <!-- Anfitrion -->
+          <div *ngSwitchCase="'ANFITRION'" class="options-container">
+              <mat-card class="option-card" routerLink="/anfitrion/alta-hospedaje">
+                  <mat-icon>add_circle</mat-icon>
+                  <h3>Alta de Hospedaje</h3>
+                  <p>Agrega un nuevo hospedaje</p>
+              </mat-card>
+
+              <mat-card class="option-card" routerLink="/anfitrion/modificacion-hospedaje">
+                  <mat-icon>edit</mat-icon>
+                  <h3>Modificar Hospedaje</h3>
+                  <p>Actualiza la información de tu hospedaje</p>
+              </mat-card>
+
+              <mat-card class="option-card" routerLink="/anfitrion/eliminar-hospedaje">
+                  <mat-icon>delete</mat-icon>
+                  <h3>Eliminar Hospedaje</h3>
+                  <p>Elimina un hospedaje existente</p>
+              </mat-card>
+          </div>
+
+          <!-- Administrador -->
+          <div *ngSwitchCase="'ADMINISTRADOR'" class="options-container">
+              <mat-card class="option-card" routerLink="/admin/gestionar-usuarios">
+                  <mat-icon>admin_panel_settings</mat-icon>
+                  <h3>Gestión de Usuarios</h3>
+                  <p>Administrar usuarios del sistema</p>
+              </mat-card>
+
+              <mat-card class="option-card" routerLink="/admin/reportes">
+                  <mat-icon>assessment</mat-icon>
+                  <h3>Ver Reportes</h3>
+                  <p>Accede a los reportes del sistema</p>
+              </mat-card>
+          </div>
+
+          <!-- Default -->
+          <div *ngSwitchDefault>
+              <mat-card class="error-card">
+                  <mat-icon color="warn">error</mat-icon>
+                  <h3>Error - Rol no reconocido</h3>
+                  <p>No se han encontrado opciones para tu rol de usuario.</p>
+              </mat-card>
+          </div>
+      </div>
   </div>
 </div>

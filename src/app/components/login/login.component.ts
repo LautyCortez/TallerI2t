@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,22 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private usuarioService: UsuarioService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    {
+      // Si ya está logueado, redirigir al dashboard
+      if (this.authService.isLoggedIn()) {
+        this.router.navigate(['/dashboard']);
+      }
+    }
   }
 
   login() {
@@ -28,9 +40,10 @@ export class LoginComponent {
             localStorage.clear(); // Limpiar todo el localStorage
             localStorage.setItem('token', response.token);
             if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
-              localStorage.setItem('userRole', response.tipoUsuarios[0].nombre.toUpperCase());
+              const userRole = response.tipoUsuarios[0].nombre.toUpperCase();
+              localStorage.setItem('userRole', userRole); // Guardar el rol en localStorage
+              this.router.navigate(['/dashboard']); // Redirigir al dashboard
             }
-            this.router.navigate(['/dashboard']);
           } else {
             alert('Credenciales incorrectas');
           }
