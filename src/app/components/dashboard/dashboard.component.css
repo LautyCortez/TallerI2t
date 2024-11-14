@@ -1,35 +1,120 @@
 .contenido-dashboard {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('src/assets/turismo-background.jpeg');
-    background-position: center;
-    background-size: cover;
-    z-index: 1; 
-}
-
-.main-content {
-    z-index: 2; 
     padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 90%;
-    max-width: 600px; /* Ajusta el ancho máximo según sea necesario */
+    min-height: calc(100vh - 100px);
+    background-image: url('src\assets\turismo-background.jpeg');
+
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-    margin-bottom: 10px;
+
+.welcome-card {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    text-align: center;
+    background-color: #e3f2fd;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ff9800;
+    transition: transform 0.3s ease;
+}
+
+.welcome-card:hover {
+    transform: scale(1.05);
+}
+
+.welcome-card h1 {
+    color: #0d47a1;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.welcome-card p {
+    color: #424242;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.options-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.option-card {
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff9800;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.15);
+}
+
+.option-card mat-icon {
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.option-card h3 {
+    color: #000000;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.option-card p {
+    color: #666;
+    margin: 0;
+    font-size: 1em;
+}
+
+.error-card {
+    text-align: center;
+    padding: 30px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffebee;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f44336;
+}
+
+.error-card mat-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    color: #f44336;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .welcome-card h1 {
+        font-size: 1.5em;
+    }
+
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+
+    .option-card {
+        padding: 20px;
+    }
 }

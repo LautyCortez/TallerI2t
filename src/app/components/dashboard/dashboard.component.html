@@ -2,9 +2,10 @@
   <div class="background-image"></div>
 
   <div class="main-content">
-      <mat-card>
+      <mat-card class="welcome-card">
           <mat-card-content>
-              <h3>Bienvenido/a</h3>
+              <h1>Bienvenido/a {{ usuario?.nombre }}</h1>
+
               <p>Selecciona una opción para comenzar</p>
           </mat-card-content>
       </mat-card>
@@ -31,7 +32,8 @@
               </mat-card>
           </div>
 
-          <!-- Anfitrion -->
+                      <!-- Anfitrion -->
+
           <div *ngSwitchCase="'ANFITRION'" class="options-container">
               <mat-card class="option-card" routerLink="/anfitrion/alta-hospedaje">
                   <mat-icon>add_circle</mat-icon>

@@ -13,10 +13,10 @@ export class DashboardComponent {
   usuario: Usuario | null = null;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.usuario = this.authService.getCurrentUser(); // Obtener el usuario actual
-    this.userRole = this.authService.getUserRole(); // Obtener el rol del localStorage
+    this.usuario = this.authService.getCurrentUser(); 
+    this.userRole = this.authService.getUserRole(); 
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']); // Redirigir a login si no está logueado
+      this.router.navigate(['/dashboard']); 
     }
   }
 }
