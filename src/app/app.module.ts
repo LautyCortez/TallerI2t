@@ -26,6 +26,7 @@ import { FormGroup } from '@angular/forms';
 import { MatOptgroup } from '@angular/material/core';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReservarHospedajeComponent } from './components/inquilino/reservar-hospedaje/reservar-hospedaje.component';
 import { ModificarReservaComponent } from './components/inquilino/modificar-reserva/modificar-reserva.component';
@@ -60,6 +61,7 @@ import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hosp
     MatButtonModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatIconModule,
     MatSelectModule,
     HttpClientModule,
   ],
