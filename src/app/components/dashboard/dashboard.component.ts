@@ -16,20 +16,20 @@ export class DashboardComponent {
 
   redirectBasedOnRole() {
     if (this.userRole) {
-      switch (this.userRole.toUpperCase()) {
-        case 'INQUILINO':
-          this.router.navigate(['/inquilino/gestion-agenda']);
-          break;
-        case 'ANFITRION':
-          this.router.navigate(['/anfitrion/gestion-agenda']);
-          break;
-        case 'ADMIN':
-          this.router.navigate(['/admin/gestion-agenda']);
-          break;
-        default:
-          this.router.navigate(['/']); // Redirigir a la página de inicio o a un error
-          break;
-      }
+        switch (this.userRole.toUpperCase()) {
+            case 'INQUILINO':
+                this.router.navigate(['/inquilino/reservar-hospedaje']); // Cambia a la ruta que desees
+                break;
+            case 'ANFITRION':
+                this.router.navigate(['/anfitrion/alta-hospedaje']); // Cambia a la ruta que desees
+                break;
+            case 'ADMIN':
+                this.router.navigate(['/admin/gestionar-usuarios']); // Cambia a la ruta que desees
+                break;
+            default:
+                this.router.navigate(['/']); // Redirigir a la página de inicio o a un error
+                break;
+        }
     }
-  }
+}
 }

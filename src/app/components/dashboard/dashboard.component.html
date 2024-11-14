@@ -1,47 +1,42 @@
-<div *ngIf="userRole">
-  <div [ngSwitch]="userRole">
-    <div *ngSwitchCase="'INQUILINO'">
+<div class="contenido-dashboard">
+  <div class="background-image"></div>
+
+  <div class="main-content">
       <mat-card>
-        <mat-card-content>
-          <h3>Contenido para inquilinos</h3>
-          <ul>
-            <li><a routerLink="/inquilino/reservar-hospedaje">Reservar Hospedaje</a></li>
-            <li><a routerLink="/inquilino/modificar-reserva">Modificar Reserva</a></li>
-            <li><a routerLink="/inquilino/cancelar-reserva">Cancelar Reserva</a></li>
-          </ul>
-        </mat-card-content>
+          <mat-card-content>
+              <h3>Bienvenido al Dashboard</h3>
+              <div *ngIf="userRole">
+                  <div [ngSwitch]="userRole">
+                      <div *ngSwitchCase="'INQUILINO'">
+                          <h4>Contenido para inquilinos</h4>
+                          <ul>
+                              <li><a routerLink="/inquilino/reservar-hospedaje">Reservar Hospedaje</a></li>
+                              <li><a routerLink="/inquilino/modificar-reserva">Modificar Reserva</a></li>
+                              <li><a routerLink="/inquilino/cancelar-reserva">Cancelar Reserva</a></li>
+                          </ul>
+                      </div>
+                      <div *ngSwitchCase="'ANFITRION'">
+                          <h4>Contenido para anfitriones</h4>
+                          <ul>
+                              <li><a routerLink="/anfitrion/altaHospedaje">Alta de Hospedaje</a></li>
+                              <li><a routerLink="/anfitrion/modificacion-hospedaje">Modificar Hospedaje</a></li>
+                              <li><a routerLink="/anfitrion/eliminar-hospedaje">Eliminar Hospedaje</a></li>
+                          </ul>
+                      </div>
+                      <div *ngSwitchCase="'ADMINISTRADOR'">
+                          <h4>Contenido para administradores</h4>
+                          <ul>
+                              <li><a routerLink="/admin/gestionar-usuarios">Gestionar Usuarios</a></li>
+                              <li><a routerLink="/admin/reportes">Ver Reportes</a></li>
+                          </ul>
+                      </div>
+                      <div *ngSwitchDefault>
+                          <h4>Rol no reconocido</h4>
+                          <p>No se han encontrado opciones para tu rol de usuario.</p>
+                      </div>
+                  </div>
+              </div>
+          </mat-card-content>
       </mat-card>
-    </div>
-    <div *ngSwitchCase="'ANFITRION'">
-      <mat-card>
-        <mat-card-content>
-          <h3>Contenido para anfitriones</h3>
-          <ul>
-            <li><a routerLink="/anfitrion/alta-hospedaje">Alta de Hospedaje</a></li>
-            <li><a routerLink="/anfitrion/modificacion-hospedaje">Modificar Hospedaje</a></li>
-            <li><a routerLink="/anfitrion/eliminar-hospedaje">Eliminar Hospedaje</a></li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div *ngSwitchCase="'ADMINISTRADOR'">
-      <mat-card>
-        <mat-card-content>
-          <h3>Contenido para administradores</h3>
-          <ul>
-            <li><a routerLink="/admin/gestionar-usuarios">Gestionar Usuarios</a></li>
-            <li><a routerLink="/admin/reportes">Ver Reportes</a></li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div *ngSwitchDefault>
-      <mat-card>
-        <mat-card-content>
-          <h3>Rol no reconocido</h3>
-          <p>No se han encontrado opciones para tu rol de usuario.</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
 </div>

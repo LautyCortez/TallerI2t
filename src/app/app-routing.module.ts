@@ -20,8 +20,8 @@ import { ModificacionHospedajeComponent } from './components/anfitrion/modificac
 
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
-  { path: 'altaHospedaje', component: AltaHospedajeComponent},
-  { path: 'eliminarHospedaje', component: EliminarHospedajeComponent},
+  { path: 'alta-hospedaje', component: AltaHospedajeComponent},
+  { path: 'eliminar-hospedaje', component: EliminarHospedajeComponent},
   { path: 'modificacionHospedaje', component: ModificacionHospedajeComponent},
   { path: 'cancelarReserva', component: CancelarReservaComponent},
   { path: 'modificarReserva', component: ModificarReservaComponent},
