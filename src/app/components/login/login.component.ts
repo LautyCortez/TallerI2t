@@ -30,7 +30,7 @@ export class LoginComponent {
     }
   }
 
-  login() {
+/*   login() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
       this.usuarioService.login(username, password).subscribe({
@@ -58,9 +58,9 @@ export class LoginComponent {
   }
 }
 
+ */
 
-
-/* login() {
+login() {
   if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
       this.usuarioService.login(username, password).subscribe({
@@ -72,8 +72,8 @@ export class LoginComponent {
                   if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
                       const userRole = response.tipoUsuarios[0].nombre.toUpperCase();
                       localStorage.setItem('userRole', userRole);
-                      localStorage.setItem('usuario', response.nombre); // Guardar el nombre del usuario
-                      this.router.navigate(['/dashboard']); // Redirigir al dashboard
+                      localStorage.setItem('usuario', response.nombre); 
+                      this.router.navigate(['/dashboard']);
                   }
               } else {
                   alert('Credenciales incorrectas');
@@ -85,4 +85,5 @@ export class LoginComponent {
           }
       });
   }
-} */
+}
+}
