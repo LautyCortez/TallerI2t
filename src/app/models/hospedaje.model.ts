@@ -1,5 +1,6 @@
 export interface HospedajeDTO {
     descripcion: string;
+    id: number;
     precioPorNoche: number;
     imagen: string;
     tipoHospedajeId: number;
@@ -9,6 +10,7 @@ export interface HospedajeDTO {
   
   export interface EditHospedajeDTO {
     descripcion: string;
+    id: number;
     precioPorNoche: number;
     imagen: string;
     tipoHospedajeId: number;
