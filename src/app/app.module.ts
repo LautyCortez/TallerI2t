@@ -3,13 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 /* Componentes */
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroComponent } from './components/registro/registro.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReservarHospedajeComponent } from './components/inquilino/reservar-hospedaje/reservar-hospedaje.component';
+import { ModificarReservaComponent } from './components/inquilino/modificar-reserva/modificar-reserva.component';
+import { CancelarReservaComponent } from './components/inquilino/cancelar-reserva/cancelar-reserva.component';
+import { AltaHospedajeComponent } from './components/anfitrion/alta-hospedaje/alta-hospedaje.component';
+import { ModificacionHospedajeComponent } from './components/anfitrion/modificacion-hospedaje/modificacion-hospedaje.component';
+import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hospedaje/eliminar-hospedaje.component';
+import { GlobalDialogComponent } from './components/global-dialog/global-dialog.component';
+
 
 
 
@@ -18,6 +28,8 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,13 +39,6 @@ import { MatOptgroup } from '@angular/material/core';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ReservarHospedajeComponent } from './components/inquilino/reservar-hospedaje/reservar-hospedaje.component';
-import { ModificarReservaComponent } from './components/inquilino/modificar-reserva/modificar-reserva.component';
-import { CancelarReservaComponent } from './components/inquilino/cancelar-reserva/cancelar-reserva.component';
-import { AltaHospedajeComponent } from './components/anfitrion/alta-hospedaje/alta-hospedaje.component';
-import { ModificacionHospedajeComponent } from './components/anfitrion/modificacion-hospedaje/modificacion-hospedaje.component';
-import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hospedaje/eliminar-hospedaje.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +52,16 @@ import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hosp
     AltaHospedajeComponent,
     ModificacionHospedajeComponent,
     EliminarHospedajeComponent,
+    GlobalDialogComponent,
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,

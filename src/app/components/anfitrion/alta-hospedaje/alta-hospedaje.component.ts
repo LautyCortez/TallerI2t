@@ -12,7 +12,7 @@ import { HospedajeDTO } from 'src/app/models/hospedaje.model';
   templateUrl: './alta-hospedaje.component.html',
   styleUrls: ['./alta-hospedaje.component.css']
 })
-export class AltaHospedajeComponent {
+export class AltaHospedajeComponent implements OnInit {
   altaHospedajeForm: FormGroup;
   tiposHospedaje: any[] = [];
   ciudades: any[] = [];

@@ -1,0 +1,15 @@
+<h2>Administrar Peticiones</h2>
+<p>Selecciona una opción:</p>
+<button mat-button (click)="onClose()">Cerrar</button>
+
+<ng-container *ngIf="componentToShow === 'alta'">
+  <app-alta-hospedaje></app-alta-hospedaje>
+</ng-container>
+
+<ng-container *ngIf="componentToShow === 'modificacion'">
+  <app-modificacion-hospedaje></app-modificacion-hospedaje>
+</ng-container>
+
+<ng-container *ngIf="componentToShow === 'eliminar'">
+    <app-eliminar-hospedaje></app-eliminar-hospedaje>
+  </ng-container>
