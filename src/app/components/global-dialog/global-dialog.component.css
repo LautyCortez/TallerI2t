@@ -1,29 +1,28 @@
-h2 {
-    color: #0d47a1; /* Color del título */
-    font-size: 1.8em; /* Tamaño del título */
-    margin-bottom: 20px; /* Espaciado inferior */
+:host {
+    display: block;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 400px;
+    max-width: 800px;
+    width: 90%;
 }
 
-p {
-    color: #424242; /* Color del texto */
-    font-size: 1.2em; /* Tamaño del texto */
-    margin-bottom: 20px; /* Espaciado inferior */
+#titulo-dialogo {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 32px;
+}
+
+#texto-dialogo {
+    margin-bottom: 15px;
 }
 
 button {
-    background-color: #ff9800; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    margin: 5px; /* Espaciado entre botones */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+    margin-top: 15px;
 }
 
-button:hover {
-    background-color: #e68a00; /* Color de fondo al pasar el mouse */
-}
-
-.mat-dialog-container {
-    padding: 20px; /* Espaciado interno del diálogo */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra del diálogo */
-    background-color: #ffffff; /* Color de fondo del diálogo */
+::ng-deep .mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
 }

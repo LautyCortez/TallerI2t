@@ -1,6 +1,5 @@
 <div class="login-container">
     <div class="background-image"></div>
-
     <div class="login-form-container">
         <mat-card class="login-card">
             <div class="login-title-container">
@@ -9,55 +8,68 @@
             </div>
             <mat-card-content>
                 <form [formGroup]="registroForm" (ngSubmit)="registrar()">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Nombre</mat-label>
-                        <input matInput formControlName="nombre" placeholder="Ingresa tu nombre" />
-                        <mat-error *ngIf="registroForm.get('nombre')?.invalid">El nombre es requerido</mat-error>
-                    </mat-form-field>
+                    <div class="form-grid">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombre" placeholder="Ingresa tu nombre" />
+                            <mat-error *ngIf="registroForm.get('nombre')?.invalid">El nombre es requerido</mat-error>
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Apellido</mat-label>
-                        <input matInput formControlName="apellido" placeholder="Ingresa tu apellido" />
-                        <mat-error *ngIf="registroForm.get('apellido')?.invalid">El apellido es requerido</mat-error>
-                    </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Apellido</mat-label>
+                            <input matInput formControlName="apellido" placeholder="Ingresa tu apellido" />
+                            <mat-error *ngIf="registroForm.get('apellido')?.invalid">El apellido es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Usuario</mat-label>
-                        <input matInput formControlName="username" placeholder="Ingresa tu usuario" />
-                        <mat-error *ngIf="registroForm.get('username')?.invalid">El usuario es requerido</mat-error>
-                    </mat-form-field>
+                    <div class="form-grid">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Usuario</mat-label>
+                            <input matInput formControlName="username" placeholder="Ingresa tu usuario" />
+                            <mat-error *ngIf="registroForm.get('username')?.invalid">El usuario es requerido</mat-error>
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Correo Electrónico</mat-label>
-                        <input matInput formControlName="email" placeholder="Ingresa tu correo electrónico" />
-                        <mat-error *ngIf="registroForm.get('email')?.invalid">El correo electrónico es requerido</mat-error>
-                    </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Correo Electrónico</mat-label>
+                            <input matInput formControlName="email" placeholder="Ingresa tu correo electrónico" />
+                            <mat-error *ngIf="registroForm.get('email')?.invalid">El correo electrónico es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Fecha de Nacimiento</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" placeholder="Selecciona tu fecha de nacimiento" />
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
+                    <div class="form-grid">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Fecha de Nacimiento</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" placeholder="Selecciona tu fecha de nacimiento" />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña" />
-                        <mat-error *ngIf="registroForm.get('password')?.invalid">La contraseña es requerida</mat-error>
-                    </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña" />
+                            <mat-error *ngIf="registroForm.get('password')?.invalid">La contraseña es requerida</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Tipo de Usuario</mat-label>
-                        <mat-select formControlName="tipoUsuarios">
-                            <mat-option [value]="3">Anfitrión</mat-option>
-                            <mat-option [value]="2">Inquilino</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="registroForm.get('tipoUsuarios')?.invalid">El tipo de usuario es requerido</mat-error>
-                    </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Tipo de Usuario</mat-label>
+                            <mat-select formControlName="tipoUsuarios">
+                                <mat-option [value]="3">Anfitrión</mat-option>
+                                <mat-option [value]="2">Inquilino</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registroForm.get('tipoUsuarios')?.invalid">El tipo de usuario es requerido</mat-error>
+                        </mat-form-field>
 
+
+                    <div class="button-container">
                     <button mat-raised-button color="primary" type="submit">Registrar</button>
+                    </div>
                 </form>
             </mat-card-content>
+
+        <mat-card-actions>
+            <a routerLink="/login" class="login-link">¿Ya tenes cuenta? Inicia Sesion</a>
+        </mat-card-actions>
         </mat-card>
     </div>
 </div>

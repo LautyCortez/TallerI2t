@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalDialogComponent } from '../global-dialog/global-dialog.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,6 @@ export class DashboardComponent {
 
   openGlobalDialog(type: string): void {
     const dialogRef = this.dialog.open(GlobalDialogComponent);
-    dialogRef.componentInstance.componentToShow = type;
+    dialogRef.componentInstance.MostrarDialogo = type;
   }
 }

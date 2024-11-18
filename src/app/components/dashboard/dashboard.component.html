@@ -1,3 +1,6 @@
+<app-navbar></app-navbar>
+
+
 <div class="contenido-dashboard">
     <div class="background-image"></div>
 
@@ -5,32 +8,13 @@
         <mat-card class="welcome-card">
             <mat-card-content>
                 <h1>Bienvenido/a {{ user }}</h1>
+                <h2>Iniciaste sesion como: {{userRole}} </h2>
 
                 <p>Selecciona una opción para comenzar</p>
             </mat-card-content>
         </mat-card>
 
         <div [ngSwitch]="userRole" class="options-grid">
-            <!-- Inquilino -->
-            <!-- <div *ngSwitchCase="'INQUILINO'" class="options-container">
-                <mat-card class="option-card" (click)="openGlobalDialog()">
-                    <mat-icon>event_available</mat-icon>
-                    <h3>Reservar Hospedaje</h3>
-                    <p>Agenda una nueva reserva</p>
-                </mat-card>
-
-                <mat-card class="option-card" (click)="openGlobalDialog()">
-                    <mat-icon>calendar_today</mat-icon>
-                    <h3>Modificar Reserva</h3>
-                    <p>Ver y gestionar tus reservas</p>
-                </mat-card>
-
-                <mat-card class="option-card" (click)="openGlobalDialog()">
-                    <mat-icon>cancel</mat-icon>
-                    <h3>Cancelar Reserva</h3>
-                    <p>Gestiona tus reservas</p>
-                </mat-card>
-            </div> -->
 
             <!-- Anfitrion -->
 
@@ -54,7 +38,32 @@
                 </mat-card>
             </div>
 
+            <!-- Inquilino -->
+
+            <!-- <div *ngSwitchCase="'INQUILINO'" class="options-container">
+                <mat-card class="option-card" (click)="openGlobalDialog()">
+                    <mat-icon>event_available</mat-icon>
+                    <h3>Reservar Hospedaje</h3>
+                    <p>Agenda una nueva reserva</p>
+                </mat-card>
+
+                <mat-card class="option-card" (click)="openGlobalDialog()">
+                    <mat-icon>calendar_today</mat-icon>
+                    <h3>Modificar Reserva</h3>
+                    <p>Ver y gestionar tus reservas</p>
+                </mat-card>
+
+                <mat-card class="option-card" (click)="openGlobalDialog()">
+                    <mat-icon>cancel</mat-icon>
+                    <h3>Cancelar Reserva</h3>
+                    <p>Gestiona tus reservas</p>
+                </mat-card>
+            </div> -->
+
+
             <!-- Administrador -->
+
+
             <!-- <div *ngSwitchCase="'ADMINISTRADOR'" class="options-container">
                 <mat-card class="option-card" (click)="openGlobalDialog()">
                     <mat-icon>admin_panel_settings</mat-icon>
@@ -80,3 +89,4 @@
         </div>
     </div>
 </div>
+

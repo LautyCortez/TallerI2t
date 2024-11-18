@@ -1,15 +1,22 @@
-<h2>Administrar Peticiones</h2>
-<p>Selecciona una opción:</p>
-<button mat-button (click)="onClose()">Cerrar</button>
-
-<ng-container *ngIf="componentToShow === 'alta'">
-  <app-alta-hospedaje></app-alta-hospedaje>
-</ng-container>
-
-<ng-container *ngIf="componentToShow === 'modificacion'">
-  <app-modificacion-hospedaje></app-modificacion-hospedaje>
-</ng-container>
-
-<ng-container *ngIf="componentToShow === 'eliminar'">
-    <app-eliminar-hospedaje></app-eliminar-hospedaje>
+<div class="dialog-container">
+  <ng-container *ngIf="MostrarDialogo === 'alta'">
+    <h2 id="titulo-dialogo">Alta del hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-alta-hospedaje></app-alta-hospedaje>
+    <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
   </ng-container>
+
+  <ng-container *ngIf="MostrarDialogo === 'modificacion'">
+    <h2 id="titulo-dialogo">Modificacion del hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-modificacion-hospedaje></app-modificacion-hospedaje>
+    <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
+  </ng-container>
+
+  <ng-container *ngIf="MostrarDialogo === 'eliminar'">
+    <h2 id="titulo-dialogo">Eliminar un hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-eliminar-hospedaje></app-eliminar-hospedaje>
+    <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
+  </ng-container>
+</div>

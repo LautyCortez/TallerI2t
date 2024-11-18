@@ -4,7 +4,7 @@
     <div class="login-form-container">
         <mat-card class="login-card">
             <div class="login-title-container">
-                <mat-card-title>Bienvenido a Hostease!</mat-card-title>
+                <mat-card-title>Login del usuario</mat-card-title>
                 <mat-card-subtitle>Ingresa con tu cuenta o Registrate.</mat-card-subtitle>
             </div>
             <mat-card-content>
@@ -22,13 +22,13 @@
                     </mat-form-field>
 
                     <div class="button-container">
-                        <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Iniciar
+                        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Iniciar
                             Sesión</button>
                     </div>
                 </form>
             </mat-card-content>
             <mat-card-actions>
-                <a routerLink="/registro" class="register-link">¿No tenes una cuenta? Regístrate</a>
+                <a routerLink="/registro" class="login-link">¿No tenes una cuenta? Regístrate</a>
             </mat-card-actions>
         </mat-card>
     </div>
