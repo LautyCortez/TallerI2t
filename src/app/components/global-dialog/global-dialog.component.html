@@ -3,14 +3,14 @@
     <h2 id="titulo-dialogo">Alta del hospedaje</h2>
     <p id="texto-dialogo">Selecciona una opción:</p>
     <app-alta-hospedaje></app-alta-hospedaje>
-    <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
+    <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
   </ng-container>
 
   <ng-container *ngIf="MostrarDialogo === 'modificacion'">
     <h2 id="titulo-dialogo">Modificacion del hospedaje</h2>
     <p id="texto-dialogo">Selecciona una opción:</p>
-    <app-modificacion-hospedaje></app-modificacion-hospedaje>
-    <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
+    <app-lista-hospedajes></app-lista-hospedajes>
+    <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
   </ng-container>
 
   <ng-container *ngIf="MostrarDialogo === 'eliminar'">

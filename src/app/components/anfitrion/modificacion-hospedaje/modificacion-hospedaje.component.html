@@ -1,28 +1,28 @@
 <form [formGroup]="modificarHospedajeForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
-        <mat-label>Descripción</mat-label>
+        <mat-label>Descripción*</mat-label>
         <textarea matInput formControlName="descripcion" required></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Precio por Noche</mat-label>
+        <mat-label>Precio por Noche*</mat-label>
         <input matInput type="number" formControlName="precioPorNoche" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Imagen</mat-label>
+        <mat-label>Imagen*</mat-label>
         <input matInput formControlName="imagen" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Tipo de Hospedaje</mat-label>
+        <mat-label>Tipo de Hospedaje*</mat-label>
         <mat-select formControlName="tipoHospedajeId" required>
             <mat-option *ngFor="let tipo of tiposHospedaje" [value]="tipo.id">{{ tipo.nombre }}</mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Ciudad</mat-label>
+        <mat-label>Ciudad*</mat-label>
         <mat-select formControlName="ciudadId" required>
             <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</mat-option>
         </mat-select>

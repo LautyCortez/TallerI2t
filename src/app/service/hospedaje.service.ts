@@ -20,9 +20,12 @@ export class HospedajeService {
     return this.http.post<any>(`${this.apiUrl}/crear`, hospedajeDTO, { headers });
   }
 
-  editarHospedaje(id: number, editHospedajeDTO: EditHospedajeDTO): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/edit/${id}`, editHospedajeDTO);
-  }
+  editarHospedaje(id: number, hospedaje: EditHospedajeDTO): Observable<HospedajeDTO> {
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.put<HospedajeDTO>(`${this.apiUrl}/${id}`, hospedaje, { headers });
+}
 
   obtenerTodosHospedajes(): Observable<HospedajeDTO[]> {
     return this.http.get<HospedajeDTO[]>(`${this.apiUrl}/all`);
@@ -38,4 +41,8 @@ export class HospedajeService {
     });
     return this.http.delete<any>(`${this.apiUrl}/delete/${id}`, { headers });
   }
+
+  editarTipoHospedaje(id: number, tipoHospedaje: any): Observable<HospedajeDTO> {
+    return this.http.put<HospedajeDTO>(`${this.apiUrl}/edit/${id}`, tipoHospedaje);
+}
 }

@@ -24,10 +24,20 @@
     </select>
   </div>
   <div>
-    <label for="serviciosIds">Servicios</label>
-    <select id="serviciosIds" formControlName="serviciosIds" multiple>
-      <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
-    </select>
+    <mat-form-field appearance="outline">
+      <mat-label>Servicios</mat-label>
+      <mat-select formControlName="serviciosIds" multiple>
+        <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <button type="submit">Crear Hospedaje</button>
 </form>
+
+
+
+
+<!-- <label for="serviciosIds">Servicios</label>
+<select id="serviciosIds" formControlName="serviciosIds" multiple>
+  <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</option>
+</select>  -->
