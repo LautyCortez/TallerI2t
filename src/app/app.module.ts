@@ -42,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { HomeComponent } from './components/home/home.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

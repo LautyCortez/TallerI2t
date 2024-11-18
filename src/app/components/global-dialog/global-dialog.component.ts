@@ -14,8 +14,6 @@ export class GlobalDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     dialogRef.addPanelClass('custom-dialog-container');
-    
-
     dialogRef.updateSize('600px', 'auto');
   }
 
