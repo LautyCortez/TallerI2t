@@ -43,6 +43,7 @@ import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { HomeComponent } from './components/home/home.component';
 import { MatTableModule } from '@angular/material/table';
+import { ListaHospedajesComponent } from './components/anfitrion/lista-hospedajes/lista-hospedajes.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatTableModule } from '@angular/material/table';
     GlobalDialogComponent,
     NavbarComponent,
     HomeComponent,
+    ListaHospedajesComponent,
 
 
   ],
