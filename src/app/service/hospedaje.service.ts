@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HospedajeDTO, EditHospedajeDTO } from '../models/hospedaje.model';
+import { HospedajeDTO } from '../models/hospedaje.model';
+import { EditHospedajeDTO } from '../models/hospedaje.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class HospedajeService {
   crearHospedaje(hospedajeDTO: HospedajeDTO): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}` // Asegúrate de que el token esté almacenado en localStorage
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.post<any>(`${this.apiUrl}/crear`, hospedajeDTO, { headers });
   }
@@ -23,15 +24,18 @@ export class HospedajeService {
     return this.http.put<any>(`${this.apiUrl}/edit/${id}`, editHospedajeDTO);
   }
 
-  obtenerTodosHospedajes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  obtenerTodosHospedajes(): Observable<HospedajeDTO[]> {
+    return this.http.get<HospedajeDTO[]>(`${this.apiUrl}/all`);
   }
 
-  obtenerHospedajePorId(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  obtenerHospedajePorId(id: number): Observable<HospedajeDTO> {
+    return this.http.get<HospedajeDTO>(`${this.apiUrl}/${id}`);
   }
 
   eliminarHospedaje(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`, { headers });
   }
 }

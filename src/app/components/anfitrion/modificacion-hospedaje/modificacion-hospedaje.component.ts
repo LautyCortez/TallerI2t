@@ -79,9 +79,9 @@ export class ModificacionHospedajeComponent implements OnInit, DialogComponent {
           descripcion: data.descripcion,
           precioPorNoche: data.precioPorNoche,
           imagen: data.imagen,
-          tipoHospedajeId: data.tipoHospedaje.id,
-          ciudadId: data.ciudad.id,
-          serviciosIds: data.servicios.map((servicio: {id: number}) => servicio.id)
+          tipoHospedajeId: data.tipoHospedajeId,
+          ciudadId: data.ciudadId,
+          serviciosIds: data.serviciosIds
         });
       });
     }
