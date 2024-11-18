@@ -19,34 +19,20 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: rgb(5, 140, 66);
 }
 
 .cerrar-sesion {
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(5, 140, 66);
     transition: color 0.3s ease;
 }
 
-.cerrar-sesion:hover {
-    color: rgb(255, 69, 58);
-}
-
-.username {
-    font-size: 14px;
-    margin-left: auto;
-    color: rgb(5, 140, 66);
-}
-
-.spacer {
-    flex: 1;
-}
 
 .info-icon {
     cursor: pointer;
-    color: rgba(90, 72, 2, 0.689);
+    color: rgb(0, 0, 0);
     font-size: 42px;
     transition: color 0.3s ease;
     width: auto;
@@ -56,6 +42,11 @@
 .info-icon:hover {
     color: rgb(0, 123, 255);
 }
+
+.cerrar-sesion:hover {
+    color: rgb(255, 69, 58);
+}
+
 
 .home-container {
     display: flex;
@@ -67,10 +58,6 @@
     background-size: cover;
     color: white;
     text-align: center;
-}
-
-.button-container {
-    margin-top: 20px;
 }
 
 button {

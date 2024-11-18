@@ -6,6 +6,12 @@ import { TipoHospedajeService } from 'src/app/service/tipo-hospedaje.service';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ServicioService } from 'src/app/service/servicio.service';
 import { HospedajeDTO } from 'src/app/models/hospedaje.model';
+import { TipoHospedaje } from 'src/app/models/tipo-hospedaje.model';
+import { Ciudad } from 'src/app/models/ciudad.model';
+import { Servicio } from 'src/app/models/servicio.model';
+import { tap } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-alta-hospedaje',
@@ -14,9 +20,9 @@ import { HospedajeDTO } from 'src/app/models/hospedaje.model';
 })
 export class AltaHospedajeComponent implements OnInit {
   altaHospedajeForm: FormGroup;
-  tiposHospedaje: any[] = [];
-  ciudades: any[] = [];
-  servicios: any[] = [];
+  tiposHospedaje: TipoHospedaje[] = [];
+  ciudades: Ciudad[] = [];
+  servicios: Servicio[] = [];
 
   constructor(
     private fb: FormBuilder, 
@@ -30,8 +36,8 @@ export class AltaHospedajeComponent implements OnInit {
       descripcion: ['', Validators.required],
       precioPorNoche: ['', [Validators.required, Validators.min(1)]],
       imagen: ['', Validators.required],
-      tipoHospedajeId: ['', Validators.required],
       ciudadId: ['', Validators.required],
+      tipoHospedajeId: ['', Validators.required],
       serviciosIds: [[], Validators.required]
     });
   }
@@ -54,10 +60,18 @@ export class AltaHospedajeComponent implements OnInit {
     });
   }
 
+
   loadServicios() {
-    this.servicioService.obtenerServicios().subscribe(data => {
-      this.servicios = data;
-    });
+      this.servicioService.obtenerServicios().pipe(
+          tap(data => {
+              this.servicios = data;
+          })
+      ).subscribe({
+          next: () => {},
+          error: error => {
+              console.error('Error al cargar servicios:', error);
+          }
+      });
   }
 
   onSubmit() {
@@ -70,6 +84,8 @@ export class AltaHospedajeComponent implements OnInit {
         console.error(error);
         alert('Error al crear el hospedaje');
       });
+    } else {
+      alert('Por favor, completa todos los campos requeridos.');
     }
   }
 }

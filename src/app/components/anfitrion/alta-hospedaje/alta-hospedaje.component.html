@@ -1,39 +1,40 @@
 <form [formGroup]="altaHospedajeForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Descripción</mat-label>
-      <textarea matInput formControlName="descripcion" required></textarea>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Precio por Noche</mat-label>
-      <input matInput type="number" formControlName="precioPorNoche" required>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="imagen" required>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Tipo de Hospedaje</mat-label>
-      <mat-select formControlName="tipoHospedajeId" required>
-        <mat-option *ngFor="let tipo of tiposHospedaje" [value]="tipo.id">{{ tipo.nombre }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Ciudad</mat-label>
-      <mat-select formControlName="ciudadId" required>
-        <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Servicios</mat-label>
-      <mat-select formControlName="serviciosIds" multiple>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="descripcion" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Precio por Noche</mat-label>
+    <input matInput type="number" formControlName="precioPorNoche" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Imagen</mat-label>
+    <input matInput formControlName="imagen" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Ciudad</mat-label>
+    <mat-select formControlName="ciudadId" required>
+      <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Tipo de Hospedaje</mat-label>
+    <mat-select formControlName="tipoHospedajeId" required>
+      <mat-option *ngFor="let tipo of tiposHospedaje" [value]="tipo.id">{{ tipo.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Servicios</mat-label>
+    <mat-select formControlName="serviciosIds" multiple>
         <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.nombre }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">Registrar Hospedaje</button>
-  </form>
+    </mat-select>
+</mat-form-field>
+
+  <button mat-raised-button color="accent" type="submit">Registrar Hospedaje</button>
+</form>

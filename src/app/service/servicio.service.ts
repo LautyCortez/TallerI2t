@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Servicio } from '../models/servicio.model'; // Asegúrate de tener este modelo
+import { Servicio } from '../models/servicio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ServicioService {
 
   obtenerServicios(): Observable<Servicio[]> {
     return this.http.get<Servicio[]>(`${this.apiUrl}/all`);
-  }
+}
 
   obtenerServicioPorId(id: number): Observable<Servicio> {
     return this.http.get<Servicio>(`${this.apiUrl}/${id}`);
