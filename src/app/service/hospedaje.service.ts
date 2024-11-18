@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HospedajeDTO, EditHospedajeDTO } from '../models/hospedaje.model';
 
@@ -12,7 +12,11 @@ export class HospedajeService {
   constructor(private http: HttpClient) { }
 
   crearHospedaje(hospedajeDTO: HospedajeDTO): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/crear`, hospedajeDTO);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // Asegúrate de que el token esté almacenado en localStorage
+    });
+    return this.http.post<any>(`${this.apiUrl}/crear`, hospedajeDTO, { headers });
   }
 
   editarHospedaje(id: number, editHospedajeDTO: EditHospedajeDTO): Observable<any> {

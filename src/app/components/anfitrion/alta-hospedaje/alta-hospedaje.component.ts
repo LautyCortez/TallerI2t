@@ -11,8 +11,6 @@ import { Ciudad } from 'src/app/models/ciudad.model';
 import { Servicio } from 'src/app/models/servicio.model';
 import { tap } from 'rxjs/operators';
 
-
-
 @Component({
   selector: 'app-alta-hospedaje',
   templateUrl: './alta-hospedaje.component.html',
@@ -60,18 +58,17 @@ export class AltaHospedajeComponent implements OnInit {
     });
   }
 
-
   loadServicios() {
-      this.servicioService.obtenerServicios().pipe(
-          tap(data => {
-              this.servicios = data;
-          })
-      ).subscribe({
-          next: () => {},
-          error: error => {
-              console.error('Error al cargar servicios:', error);
-          }
-      });
+    this.servicioService.obtenerServicios().pipe(
+      tap(data => {
+        this.servicios = data;
+      })
+    ).subscribe({
+      next: () => {},
+      error: error => {
+        console.error('Error al cargar servicios:', error);
+      }
+    });
   }
 
   onSubmit() {
