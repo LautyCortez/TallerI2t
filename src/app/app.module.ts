@@ -19,7 +19,7 @@ import { AltaHospedajeComponent } from './components/anfitrion/alta-hospedaje/al
 import { ModificacionHospedajeComponent } from './components/anfitrion/modificacion-hospedaje/modificacion-hospedaje.component';
 import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hospedaje/eliminar-hospedaje.component';
 import { GlobalDialogComponent } from './components/global-dialog/global-dialog.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -39,6 +39,9 @@ import { MatOptgroup } from '@angular/material/core';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { MatIconModule } from '@angular/material/icon';
     ModificacionHospedajeComponent,
     EliminarHospedajeComponent,
     GlobalDialogComponent,
+    NavbarComponent,
+    HomeComponent,
 
 
   ],
@@ -72,6 +77,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatSelectModule,
     HttpClientModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

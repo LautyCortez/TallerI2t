@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-global-dialog',
@@ -7,9 +7,17 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./global-dialog.component.css']
 })
 export class GlobalDialogComponent {
-  componentToShow!: string;
+  MostrarDialogo!: string;
   
-  constructor(public dialogRef: MatDialogRef<GlobalDialogComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<GlobalDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    dialogRef.addPanelClass('custom-dialog-container');
+    
+
+    dialogRef.updateSize('600px', 'auto');
+  }
 
   onClose(): void {
     this.dialogRef.close();

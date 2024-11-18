@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 /* Inquilino */
 import { CancelarReservaComponent } from './components/inquilino/cancelar-reserva/cancelar-reserva.component';
@@ -18,7 +20,10 @@ import { AltaHospedajeComponent } from './components/anfitrion/alta-hospedaje/al
 import { EliminarHospedajeComponent } from './components/anfitrion/eliminar-hospedaje/eliminar-hospedaje.component';
 import { ModificacionHospedajeComponent } from './components/anfitrion/modificacion-hospedaje/modificacion-hospedaje.component';
 
+
 const routes: Routes = [
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'registro', component: RegistroComponent },
   { path: 'alta-hospedaje', component: AltaHospedajeComponent},
   { path: 'eliminar-hospedaje', component: EliminarHospedajeComponent},
@@ -27,8 +32,9 @@ const routes: Routes = [
   { path: 'modificarReserva', component: ModificarReservaComponent},
   { path: 'reservarHospedaje', component: ReservarHospedajeComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+
 ];
 
 @NgModule({
