@@ -22,9 +22,10 @@ export class HospedajeService {
 
   editarHospedaje(id: number, hospedaje: EditHospedajeDTO): Observable<HospedajeDTO> {
     const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put<HospedajeDTO>(`${this.apiUrl}/${id}`, hospedaje, { headers });
+    return this.http.put<HospedajeDTO>(`${this.apiUrl}/edit/${id}`, hospedaje, { headers });
 }
 
   obtenerTodosHospedajes(): Observable<HospedajeDTO[]> {
