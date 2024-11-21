@@ -1,5 +1,5 @@
-<mat-toolbar class="header">
-    <mat-icon matTooltip="Tipo de usuario: {{ userRole }}" class="info-icon">account_circle</mat-icon>
+<mat-toolbar class="header" *ngIf="isLoggedIn()">
+    <mat-icon matTooltip="Tipo de usuario: {{ userRole }}" class="info-icon" (click)="irAEditarMisDatos()">account_circle</mat-icon>
     <button mat-button (click)="logout()" class="cerrar-sesion">Cerrar sesión</button>
     <button mat-button (click)="home()" class="home">Home</button>
 </mat-toolbar>

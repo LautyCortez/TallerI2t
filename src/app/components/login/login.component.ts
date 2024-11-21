@@ -72,7 +72,15 @@ login() {
                   if (response.tipoUsuarios && response.tipoUsuarios.length > 0) {
                       const userRole = response.tipoUsuarios[0].nombre.toUpperCase();
                       localStorage.setItem('userRole', userRole);
-                      localStorage.setItem('usuario', response.nombre); 
+                      localStorage.setItem('usuario', JSON.stringify({
+                          id: response.id,
+                          username: response.username,
+                          email: response.email,
+                          nombre: response.nombre,
+                          apellido: response.apellido,
+                          fecha_nacimiento: response.fecha_nacimiento,
+                          telefono: response.telefono 
+                      }));
                       this.router.navigate(['/dashboard']);
                   }
               } else {

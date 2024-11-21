@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditarMisDatosComponent } from './components/editar-mis-datos/editar-mis-datos.component';
 
 
 /* Inquilino */
@@ -23,7 +24,6 @@ import { ModificacionHospedajeComponent } from './components/anfitrion/modificac
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'registro', component: RegistroComponent },
   { path: 'alta-hospedaje', component: AltaHospedajeComponent},
   { path: 'eliminar-hospedaje', component: EliminarHospedajeComponent},
@@ -31,9 +31,11 @@ const routes: Routes = [
   { path: 'cancelarReserva', component: CancelarReservaComponent},
   { path: 'modificarReserva', component: ModificarReservaComponent},
   { path: 'reservarHospedaje', component: ReservarHospedajeComponent},
+  { path: 'editar-mis-datos', component: EditarMisDatosComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
 ];
 

@@ -20,19 +20,22 @@ export class NavbarComponent {
   ) {
     this.user = localStorage.getItem('usuario'); 
     this.userRole = this.authService.getUserRole(); 
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']); 
-    }
   }
 
   logout() {
-    localStorage.clear
-    this.router.navigate(['/login']);
-
+    localStorage.clear();
+    this.router.navigate(['/home']);
   }
 
   home() {
-    this.router.navigate(['/home']);
-    localStorage.clear
+    this.router.navigate(['/dashboard']);
   }
+
+  irAEditarMisDatos(){
+    this.router.navigate(['/editar-mis-datos']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token'); // Verifica si hay un token en el localStorage
+}
 }
