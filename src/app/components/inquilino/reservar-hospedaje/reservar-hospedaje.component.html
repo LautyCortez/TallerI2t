@@ -1,0 +1,46 @@
+<form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Check-in</mat-label>
+        <input matInput [matDatepicker]="checkinPicker" formControlName="checkin" required>
+        <mat-datepicker-toggle matSuffix [for]="checkinPicker"></mat-datepicker-toggle>
+        <mat-datepicker #checkinPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Check-out</mat-label>
+        <input matInput [matDatepicker]="checkoutPicker" formControlName="checkout" required>
+        <mat-datepicker-toggle matSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
+        <mat-datepicker #checkoutPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Adultos</mat-label>
+        <input matInput type="number" formControlName="adultos" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Niños</mat-label>
+        <input matInput type="number" formControlName="ninos">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Bebés</mat-label>
+        <input matInput type="number" formControlName="bebes">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Mascotas</mat-label>
+        <input matInput type="number" formControlName="mascotas">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Servicios Adicionales</mat-label>
+        <mat-select formControlName="servicios" multiple>
+            <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">
+                {{ servicio.nombre }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Reservar</button>
+</form>

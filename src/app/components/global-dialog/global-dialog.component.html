@@ -1,4 +1,7 @@
 <div class="dialog-container">
+
+  <!-- DIALOGS DEL ANFITRION -->
+
   <ng-container *ngIf="MostrarDialogo === 'alta'">
     <h2 id="titulo-dialogo">Alta del hospedaje</h2>
     <p id="texto-dialogo">Selecciona una opción:</p>
@@ -19,4 +22,16 @@
     <app-eliminar-hospedaje></app-eliminar-hospedaje>
     <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
   </ng-container>
+
+
+  <!-- DIALOGS DEL INQUILINO -->
+
+  <ng-container *ngIf="MostrarDialogo === 'reservarhospedaje'">
+    <h2 id="titulo-dialogo">Reserva del hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-reservar-hospedaje></app-reservar-hospedaje>
+    <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+  </ng-container>
+
+
 </div>
