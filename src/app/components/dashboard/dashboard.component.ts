@@ -11,16 +11,19 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  user: string | null = '';
   userRole: string | null = '';
-  user: string | null = null; 
 
   constructor(
     private router: Router, 
     private authService: AuthService,
     private dialog: MatDialog
   ) {
-    this.user = localStorage.getItem('usuario'); 
-    this.userRole = this.authService.getUserRole(); 
+    const usuarioActual = JSON.parse(localStorage.getItem('usuario') || '{}');
+    if (usuarioActual) {
+      this.user = `${usuarioActual.nombre} ${usuarioActual.apellido}`;
+    }
+    this.userRole = this.authService.getUserRole();
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/dashboard']); 
     }

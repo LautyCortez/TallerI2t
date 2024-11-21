@@ -29,11 +29,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormGroup } from '@angular/forms';
 import { MatOptgroup } from '@angular/material/core';
 import { MatOption } from '@angular/material/core';
@@ -44,6 +46,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { HomeComponent } from './components/home/home.component';
 import { MatTableModule } from '@angular/material/table';
 import { ListaHospedajesComponent } from './components/anfitrion/lista-hospedajes/lista-hospedajes.component';
+import { EditarMisDatosComponent } from './components/editar-mis-datos/editar-mis-datos.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { ListaHospedajesComponent } from './components/anfitrion/lista-hospedaje
     NavbarComponent,
     HomeComponent,
     ListaHospedajesComponent,
+    EditarMisDatosComponent,
 
 
   ],
@@ -77,6 +81,8 @@ import { ListaHospedajesComponent } from './components/anfitrion/lista-hospedaje
     MatButtonModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     MatSelectModule,
     HttpClientModule,
