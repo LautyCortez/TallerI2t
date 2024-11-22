@@ -56,26 +56,41 @@ export class EditarMisDatosComponent implements OnInit {
   guardarCambios() {
     if (this.usuarioForm.valid) {
         const editUsuarioDTO: EditUsuarioDTO = {
-            username: this.usuarioForm.value.username,
+            /* username: this.usuarioForm.value.username, */
             email: this.usuarioForm.value.email,
             nombre: this.usuarioForm.value.nombre,
-            apellido: this.usuarioForm.value.apellido,
-            fecha_nacimiento: this.usuarioForm.value.fecha_nacimiento
+            apellido: this.usuarioForm.value.apellido
         };
 
         this.loading = true;
 
         this.usuarioService.actualizarUsuario(editUsuarioDTO).subscribe({
-          next: (response) => {
-              this.loading = false;
-              this.mostrarMensaje('Cambios guardados con éxito');
-              localStorage.setItem('usuario', JSON.stringify(response));
-          },
-          error: (error) => {
-              this.loading = false;
-              this.mostrarMensaje('Error al guardar los datos');
-              console.error(error);
-          }
+            next: (response) => {
+                this.loading = false;
+                this.mostrarMensaje('Cambios guardados con éxito');
+                
+                // Actualizar el usuario en el localStorage
+                const usuarioActual = JSON.parse(localStorage.getItem('usuario') || '{}');
+                const usuarioActualizado = {
+                    ...usuarioActual,
+                   /*  username: editUsuarioDTO.username, */
+                    email: editUsuarioDTO.email,
+                    nombre: editUsuarioDTO.nombre,
+                    apellido: editUsuarioDTO.apellido
+                };
+                localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
+            },
+            error: (error) => {
+                this.loading = false;
+                if (error.status === 403) {
+                    this.mostrarMensaje('No tienes permiso para modificar este perfil');
+                } else if (error.status === 401) {
+                    this.mostrarMensaje('Usuario no autenticado');
+                } else {
+                    this.mostrarMensaje('Error al guardar los datos');
+                }
+                console.error(error);
+            }
         });
     }
 }

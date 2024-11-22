@@ -27,12 +27,12 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.apiUrl}/user/${id}`); // Asegúrate de que esta URL sea correcta
   }
 
-  actualizarUsuario(editUsuarioDTO: EditUsuarioDTO): Observable<any> {
+  editarUsuario(id: number, usuario: Usuario): Observable<any> {
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put<any>(`${this.apiUrl}/modificar`, editUsuarioDTO, { headers });
+    return this.http.put<any>(`${this.apiUrl}/edit/${id}`, usuario, { headers });
 }
 
   findByUsername(username: string): Observable<Usuario> {
@@ -40,5 +40,13 @@ export class UsuarioService {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.get<Usuario>(`${this.apiUrl}/user/username/${username}`, { headers });
+  }
+
+  actualizarUsuario(editUsuarioDTO: EditUsuarioDTO): Observable<any> {
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    });
+    return this.http.put<any>(`${this.apiUrl}/modificar`, editUsuarioDTO, { headers });
   }
 }
