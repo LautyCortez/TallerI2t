@@ -22,6 +22,8 @@ export class ReservaService {
     return this.http.get<any[]>(`${this.apiUrl}/all`);
   }
 
+
+  
   obtenerReservaPorId(idHospedaje: number, idUsuario: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${idHospedaje}/${idUsuario}`);
   }
@@ -40,4 +42,10 @@ export class ReservaService {
     });
     return this.http.delete<void>(`${this.apiUrl}/delete/${idHospedaje}/${idUsuario}`, { headers });
   }
+
+
+  obtenerReservasPorUsuario(idUsuario: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/usuario/${idUsuario}`);
+}
+
 }
