@@ -61,20 +61,25 @@
 
             <!-- Administrador -->
 
-
-            <!-- <div *ngSwitchCase="'ADMINISTRADOR'" class="options-container">
-                <mat-card class="option-card" (click)="openGlobalDialog()">
-                    <mat-icon>admin_panel_settings</mat-icon>
-                    <h3>Gestión de Usuarios</h3>
-                    <p>Administrar usuarios del sistema</p>
+            <div *ngSwitchCase="'ADMINISTRADOR'" class="options-container">
+                <mat-card class="option-card" (click)="openGlobalDialog('alta-servicio')">
+                  <mat-icon>add_circle</mat-icon>
+                  <h3>Alta de Servicio</h3>
+                  <p>Agrega un nuevo servicio al sistema</p>
                 </mat-card>
-
-                <mat-card class="option-card" (click)="openGlobalDialog()">
-                    <mat-icon>assessment</mat-icon>
-                    <h3>Ver Reportes</h3>
-                    <p>Accede a los reportes del sistema</p>
+              
+                <mat-card class="option-card" (click)="openGlobalDialog('modificacion-servicio')">
+                  <mat-icon>edit</mat-icon>
+                  <h3>Modificar Servicio</h3>
+                  <p>Actualiza la información de los servicios</p>
                 </mat-card>
-            </div> -->
+              
+                <mat-card class="option-card" (click)="openGlobalDialog('eliminacion-servicio')">
+                  <mat-icon>delete</mat-icon>
+                  <h3>Eliminar Servicio</h3>
+                  <p>Elimina servicios existentes</p>
+                </mat-card>
+              </div>
 
             <!-- Default -->
             <div *ngSwitchDefault>

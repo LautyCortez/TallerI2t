@@ -47,6 +47,9 @@ import { HomeComponent } from './components/home/home.component';
 import { MatTableModule } from '@angular/material/table';
 import { ListaHospedajesComponent } from './components/anfitrion/lista-hospedajes/lista-hospedajes.component';
 import { EditarMisDatosComponent } from './components/editar-mis-datos/editar-mis-datos.component';
+import { AltaServicioComponent } from './components/administrador/alta-servicio/alta-servicio.component';
+import { ModificacionServicioComponent } from './components/administrador/modificacion-servicio/modificacion-servicio.component';
+import { EliminacionServicioComponent } from './components/administrador/eliminacion-servicio/eliminacion-servicio.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { EditarMisDatosComponent } from './components/editar-mis-datos/editar-mi
     HomeComponent,
     ListaHospedajesComponent,
     EditarMisDatosComponent,
+    AltaServicioComponent,
+    ModificacionServicioComponent,
+    EliminacionServicioComponent,
 
 
   ],
