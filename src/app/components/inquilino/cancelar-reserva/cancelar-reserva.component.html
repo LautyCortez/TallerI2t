@@ -1,1 +1,30 @@
-<p>cancelar-reserva works!</p>
+<!-- src/app/components/inquilino/cancelar-reserva/cancelar-reserva.component.html -->
+<div class="cancelar-reserva-container">
+    <mat-card>
+        <mat-card-content>
+            <h2>Mis Reservas</h2>
+            <table mat-table [dataSource]="reservas" class="mat-elevation-z8">
+                <ng-container matColumnDef="fechaCheckIn">
+                    <th mat-header-cell *matHeaderCellDef> Fecha de Check-in </th>
+                    <td mat-cell *matCellDef="let reserva"> {{ reserva.fechaCheckIn | date }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fechaCheckOut">
+                    <th mat-header-cell *matHeaderCellDef> Fecha de Check-out </th>
+                    <td mat-cell *matCellDef="let reserva"> {{ reserva.fechaCheckOut | date }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                    <td mat-cell *matCellDef="let reserva">
+                        <button mat-button color="warn" (click)="eliminarReserva(reserva.idHospedaje)">Eliminar
+                            Reserva</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['fechaCheckIn', 'fechaCheckOut', 'acciones']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['fechaCheckIn', 'fechaCheckOut', 'acciones'];"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>
