@@ -33,5 +33,18 @@
     <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
   </ng-container>
 
+  <ng-container *ngIf="MostrarDialogo === 'modificarreserva'">
+    <h2 id="titulo-dialogo">Reserva del hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-modificar-reserva></app-modificar-reserva>
+    <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+  </ng-container>
+
+  <ng-container *ngIf="MostrarDialogo === 'cancelarreserva'">
+    <h2 id="titulo-dialogo">Reserva del hospedaje</h2>
+    <p id="texto-dialogo">Selecciona una opción:</p>
+    <app-cancelar-reserva></app-cancelar-reserva>
+    <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+  </ng-container>
 
 </div>
