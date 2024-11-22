@@ -8,4 +8,6 @@ export interface ReservaDTO {
     cantBebes: number;
     cantMascotas: number;
     importeTotal: number;
-}
+    fechaCreacion?: Date;
+    fechaModificacion?: Date;
+  }

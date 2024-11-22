@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ReservaService } from 'src/app/service/reserva.service';
-import { ServicioService } from 'src/app/service/servicio.service';
+import { HospedajeService } from 'src/app/service/hospedaje.service';
 import { ReservaDTO } from 'src/app/models/reserva.model';
+import { HospedajeDTO } from 'src/app/models/hospedaje.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -13,43 +14,47 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ReservarHospedajeComponent implements OnInit {
   reservaForm: FormGroup;
-  servicios: any[] = [];
-  idHospedaje: number = 0;
+  hospedajes: HospedajeDTO[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private reservaService: ReservaService,
-    private servicioService: ServicioService,
-    private snackBar: MatSnackBar,
-    private servicio: ServicioService
+    private hospedajeService: HospedajeService,
+    private snackBar: MatSnackBar
   ) {
     this.reservaForm = this.fb.group({
+      idHospedaje: ['', Validators.required],
       fechaCheckIn: ['', Validators.required],
       fechaCheckOut: ['', Validators.required],
       cantAdultos: [1, [Validators.required, Validators.min(1)]],
       cantNinos: [0, [Validators.required, Validators.min(0)]],
       cantBebes: [0, [Validators.required, Validators.min(0)]],
-      cantMascotas: [0, [Validators.required, Validators.min(0)]],
-      servicios: [[]]
+      cantMascotas: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
   ngOnInit() {
-    this.servicio.obtenerServicios();
-    // Obtener el ID del hospedaje de los parámetros de la ruta
-    this.route.params.subscribe(params => {
-      this.idHospedaje = +params['id'];
+    this.hospedajeService.obtenerTodosHospedajes().subscribe(hospedajes => {
+      this.hospedajes = hospedajes;
     });
   }
 
   onSubmit() {
     if (this.reservaForm.valid) {
-      const userId = Number(localStorage.getItem('userId'));
-      
+      const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+      const userId = usuario.id;
+  
+      if (!userId) {
+        this.snackBar.open('Error: Usuario no encontrado', 'Cerrar', {
+          duration: 3000
+        });
+        return;
+      }
+  
       const reservaDTO: ReservaDTO = {
-        idHospedaje: this.idHospedaje,
+        idHospedaje: this.reservaForm.value.idHospedaje,
         idUsuario: userId,
         fechaCheckIn: this.reservaForm.value.fechaCheckIn,
         fechaCheckOut: this.reservaForm.value.fechaCheckOut,
@@ -59,7 +64,7 @@ export class ReservarHospedajeComponent implements OnInit {
         cantMascotas: this.reservaForm.value.cantMascotas,
         importeTotal: 0 // Este valor se calculará en el backend
       };
-
+  
       this.reservaService.crearReserva(reservaDTO).subscribe({
         next: (response) => {
           this.snackBar.open('Reserva creada con éxito', 'Cerrar', {

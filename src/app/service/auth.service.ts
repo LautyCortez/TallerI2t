@@ -30,9 +30,17 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, usuario);
   }
 
-  getCurrentUser(): Usuario | null {
-    const user = localStorage.getItem('usuario');
-    return user ? JSON.parse(user) : null;
+   getCurrentUser(): Usuario | null {
+    const userJson = localStorage.getItem('currentUser');
+    if (userJson) {
+      try {
+        return JSON.parse(userJson) as Usuario;
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+        return null;
+      }
+    }
+    return null;
   }
 
   saveUser(user: Usuario): void {

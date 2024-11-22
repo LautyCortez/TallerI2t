@@ -1,8 +1,21 @@
 <div class="reserva-container">
     <mat-card>
-
         <mat-card-content>
             <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hospedaje</mat-label>
+                        <mat-select formControlName="idHospedaje" required>
+                            <mat-option *ngFor="let hospedaje of hospedajes" [value]="hospedaje.id">
+                                {{ hospedaje.descripcion }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="reservaForm.get('idHospedaje')?.hasError('required')">
+                            El hospedaje es requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
                 <div class="form-row">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de Check-in</mat-label>
