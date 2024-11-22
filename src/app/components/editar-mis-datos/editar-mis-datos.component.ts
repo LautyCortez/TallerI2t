@@ -33,6 +33,8 @@ export class EditarMisDatosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarDatosUsuario();
+    const usuarioActual = JSON.parse(localStorage.getItem('usuario') || '{}');
+    console.log('Username a actualizar:', usuarioActual.username);
   }
 
   cargarDatosUsuario() {
@@ -53,40 +55,32 @@ export class EditarMisDatosComponent implements OnInit {
 
   guardarCambios() {
     if (this.usuarioForm.valid) {
-      const editUsuarioDTO: EditUsuarioDTO = {
-        username: this.usuarioForm.value.username,
-        email: this.usuarioForm.value.email,
-        nombre: this.usuarioForm.value.nombre,
-        apellido: this.usuarioForm.value.apellido,
-        fecha_nacimiento: this.usuarioForm.value.fecha_nacimiento,
-      /*   telefono: this.usuarioForm.value.telefono */
-      };
+        const editUsuarioDTO: EditUsuarioDTO = {
+            username: this.usuarioForm.value.username,
+            email: this.usuarioForm.value.email,
+            nombre: this.usuarioForm.value.nombre,
+            apellido: this.usuarioForm.value.apellido,
+            fecha_nacimiento: this.usuarioForm.value.fecha_nacimiento
+        };
 
-      const usuarioId = this.authService.getCurrentUser()?.id;
-
-      if (usuarioId) {
-        this.loading = true;
-        this.usuarioService.actualizarUsuario(usuarioId, editUsuarioDTO).subscribe({
-          next: () => {
-            this.loading = false;
-            this.mostrarMensaje('Cambios guardados con éxito');
-            const usuarioActual = this.authService.getCurrentUser();
-            if (usuarioActual) {
-              this.authService.saveUser({
-                ...usuarioActual,
-                ...editUsuarioDTO,
-                nombre: usuarioActual.nombre || '',
-                apellido: usuarioActual.apellido || ''
-              });
-            }
-          },
-          error: (error) => {
-            this.loading = false;
-            this.mostrarMensaje('Error al guardar los datos');
-            console.error(error);
-          }
-        });
-      }
+        const usuarioActual = this.authService.getCurrentUser();
+        if (usuarioActual && usuarioActual.id) {
+            this.usuarioService.actualizarUsuario(editUsuarioDTO, usuarioActual.id).subscribe({
+                next: () => {
+                    this.loading = false;
+                    this.mostrarMensaje('Cambios guardados con éxito');
+                    this.authService.saveUser({
+                        ...usuarioActual,
+                        ...editUsuarioDTO,
+                    });
+                },
+                error: (error) => {
+                    this.loading = false;
+                    this.mostrarMensaje('Error al guardar los datos');
+                    console.error(error);
+                }
+            });
+        }
     }
   }
 
