@@ -24,22 +24,14 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" type="email" required>
+                    <input matInput formControlName="email" required>
                     <mat-error *ngIf="usuarioForm.get('email')?.hasError('required')">
                         El email es requerido
                     </mat-error>
                     <mat-error *ngIf="usuarioForm.get('email')?.hasError('email')">
-                        El formato del email es incorrecto
+                        El email no es válido
                     </mat-error>
                 </mat-form-field>
-
-                <!-- <mat-form-field appearance="outline">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput formControlName="telefono" type="tel" required>
-                    <mat-error *ngIf="usuarioForm.get('telefono')?.hasError('required')">
-                        El teléfono es requerido
-                    </mat-error>
-                </mat-form-field> -->
 
                 <mat-form-field appearance="outline">
                     <mat-label>Fecha de Nacimiento</mat-label>

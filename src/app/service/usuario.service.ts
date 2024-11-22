@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EditUsuarioDTO } from '../models/edit-usuariodto.model';
 import { Usuario } from '../models/usuario.model'; 
@@ -27,11 +27,18 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.apiUrl}/user/${id}`); // Asegúrate de que esta URL sea correcta
   }
 
-  actualizarUsuario(id: number, editUsuarioDTO: EditUsuarioDTO): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/edit/${id}`, editUsuarioDTO);
+  actualizarUsuario(editUsuarioDTO: EditUsuarioDTO, id: number): Observable<any> {
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.put<any>(`${this.apiUrl}/edit/${id}`, editUsuarioDTO, { headers });
 }
 
-findByUsername(username: any): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}/user/username/${username}`); // Asegúrate de que esta URL sea correcta
-}
+  findByUsername(username: string): Observable<Usuario> {
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<Usuario>(`${this.apiUrl}/user/username/${username}`, { headers });
+  }
 }
