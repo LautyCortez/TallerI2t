@@ -60,6 +60,17 @@
     text-align: center;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.configuracion-texto {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+
 button {
     margin: 10px;
 }

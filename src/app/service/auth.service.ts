@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response.model';
 import { Usuario } from '../models/usuario.model';
 
@@ -9,8 +9,18 @@ import { Usuario } from '../models/usuario.model';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8080/api/auth';
+  private currentUserSubject = new BehaviorSubject<Usuario | null>(null);
+  currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) { 
+
+    const user = this.getCurrentUser();
+    if (user) {
+      this.currentUserSubject.next(user);
+    }
+
+  }
 
   login(username: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, { username, password });
