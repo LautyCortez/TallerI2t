@@ -53,47 +53,36 @@ export class EditarMisDatosComponent implements OnInit {
     }
   }
 
-  guardarCambios() {
+  guardarCambios(): void {
     if (this.usuarioForm.valid) {
-        const editUsuarioDTO: EditUsuarioDTO = {
-            /* username: this.usuarioForm.value.username, */
-            email: this.usuarioForm.value.email,
-            nombre: this.usuarioForm.value.nombre,
-            apellido: this.usuarioForm.value.apellido
-        };
-
-        this.loading = true;
-
-        this.usuarioService.actualizarUsuario(editUsuarioDTO).subscribe({
-            next: (response) => {
-                this.loading = false;
-                this.mostrarMensaje('Cambios guardados con éxito');
-                
-                // Actualizar el usuario en el localStorage
-                const usuarioActual = JSON.parse(localStorage.getItem('usuario') || '{}');
-                const usuarioActualizado = {
-                    ...usuarioActual,
-                   /*  username: editUsuarioDTO.username, */
-                    email: editUsuarioDTO.email,
-                    nombre: editUsuarioDTO.nombre,
-                    apellido: editUsuarioDTO.apellido
-                };
-                localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
-            },
-            error: (error) => {
-                this.loading = false;
-                if (error.status === 403) {
-                    this.mostrarMensaje('No tienes permiso para modificar este perfil');
-                } else if (error.status === 401) {
-                    this.mostrarMensaje('Usuario no autenticado');
-                } else {
-                    this.mostrarMensaje('Error al guardar los datos');
-                }
-                console.error(error);
-            }
-        });
+      this.loading = true;
+      const editUsuarioDTO: EditUsuarioDTO = {
+        nombre: this.usuarioForm.value.nombre,
+        apellido: this.usuarioForm.value.apellido,
+        username: this.usuarioForm.value.username,
+        email: this.usuarioForm.value.email
+      };
+  
+      this.usuarioService.actualizarUsuario(editUsuarioDTO).subscribe(
+        response => {
+          console.log('Usuario actualizado con éxito', response);
+          this.mostrarMensaje('Datos actualizados con éxito');
+          this.loading = false;
+        },
+        error => {
+          if (error.status === 200) {
+            this.mostrarMensaje('Datos actualizados con éxito');
+          } else if (error.status === 401) {
+            this.mostrarMensaje('Usuario no autenticado');
+          } else {
+            this.mostrarMensaje('Error al guardar los datos');
+          }
+          console.error(error);
+          this.loading = false;
+        }
+      );
     }
-}
+  }
 
   private mostrarMensaje(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {

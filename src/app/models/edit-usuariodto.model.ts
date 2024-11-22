@@ -1,5 +1,5 @@
 export interface EditUsuarioDTO {
-   /*  username: string; */
+   username: string;
     email: string;
     nombre: string;
     /* telefono: number; */

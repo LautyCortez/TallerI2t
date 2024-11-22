@@ -9,9 +9,10 @@ import { Usuario } from '../models/usuario.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-
+ //aca hay cosas duplicadas con el authService. Hay que corregir.
   
   private apiUrl = 'http://localhost:8080/api/auth'; 
+  private userApiUrl = 'http://localhost:8080/api/usuarios'; 
   
   constructor(private http: HttpClient) { }
 
@@ -44,9 +45,9 @@ export class UsuarioService {
 
   actualizarUsuario(editUsuarioDTO: EditUsuarioDTO): Observable<any> {
     const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put<any>(`${this.apiUrl}/modificar`, editUsuarioDTO, { headers });
+    return this.http.put(`${this.userApiUrl}/modificar`, editUsuarioDTO, { headers, responseType: 'text' });
   }
 }
