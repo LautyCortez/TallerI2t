@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class NavbarComponent {
 
   userRole: string | null = '';
   user: string | null = null; 
-
+  hideNavbar: boolean = false;
 
 
   constructor(
@@ -20,6 +20,16 @@ export class NavbarComponent {
   ) {
     this.user = localStorage.getItem('usuario'); 
     this.userRole = this.authService.getUserRole(); 
+
+    // Suscribirse a los cambios de ruta
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Rutas donde queremos ocultar el navbar
+        const hiddenRoutes = ['/login', '/home', '/registro'];
+        this.hideNavbar = hiddenRoutes.includes(event.url);
+      }
+    });
+
   }
 
   logout() {

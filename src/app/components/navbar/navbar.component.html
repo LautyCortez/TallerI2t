@@ -1,11 +1,11 @@
+<nav *ngIf="!hideNavbar">
 <mat-toolbar class="header" *ngIf="isLoggedIn()">
     <div class="user-info">
-        <mat-icon matTooltip="Tipo de usuario: {{ userRole }}" class="info-icon"
+        <mat-icon matTooltip="Hace click para editar tus datos" class="info-icon"
             (click)="irAEditarMisDatos()">account_circle</mat-icon>
         <span class="configuracion-texto">Mis datos</span>
     </div>
     <button mat-button (click)="logout()" class="cerrar-sesion">Cerrar sesión</button>
     <button mat-button (click)="home()" class="home">Home</button>
 </mat-toolbar>
-
-<!-- hay que arreglar el userRole, que no se actualiza solo, se actualiza al dar f5 -->
+</nav>
