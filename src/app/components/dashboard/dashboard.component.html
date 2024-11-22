@@ -1,4 +1,3 @@
-
 <div class="contenido-dashboard">
     <div class="background-image"></div>
 
@@ -38,7 +37,7 @@
 
             <!-- Inquilino -->
 
-             <div *ngSwitchCase="'INQUILINO'" class="options-container">
+            <div *ngSwitchCase="'INQUILINO'" class="options-container">
                 <mat-card class="option-card" (click)="openGlobalDialog('reservarhospedaje')">
                     <mat-icon>event_available</mat-icon>
                     <h3>Reservar Hospedaje</h3>
@@ -56,30 +55,30 @@
                     <h3>Cancelar Reserva</h3>
                     <p>Elimina alguna de tus reservas</p>
                 </mat-card>
-            </div> 
+            </div>
 
 
             <!-- Administrador -->
 
             <div *ngSwitchCase="'ADMINISTRADOR'" class="options-container">
                 <mat-card class="option-card" (click)="openGlobalDialog('alta-servicio')">
-                  <mat-icon>add_circle</mat-icon>
-                  <h3>Alta de Servicio</h3>
-                  <p>Agrega un nuevo servicio al sistema</p>
+                    <mat-icon>add_circle</mat-icon>
+                    <h3>Alta de Servicio</h3>
+                    <p>Agrega un nuevo servicio al sistema</p>
                 </mat-card>
-              
+
                 <mat-card class="option-card" (click)="openGlobalDialog('modificacion-servicio')">
-                  <mat-icon>edit</mat-icon>
-                  <h3>Modificar Servicio</h3>
-                  <p>Actualiza la información de los servicios</p>
+                    <mat-icon>edit</mat-icon>
+                    <h3>Modificar Servicio</h3>
+                    <p>Actualiza la información de los servicios</p>
                 </mat-card>
-              
+
                 <mat-card class="option-card" (click)="openGlobalDialog('eliminacion-servicio')">
-                  <mat-icon>delete</mat-icon>
-                  <h3>Eliminar Servicio</h3>
-                  <p>Elimina servicios existentes</p>
+                    <mat-icon>delete</mat-icon>
+                    <h3>Eliminar Servicio</h3>
+                    <p>Elimina servicios existentes</p>
                 </mat-card>
-              </div>
+            </div>
 
             <!-- Default -->
             <div *ngSwitchDefault>
@@ -92,4 +91,3 @@
         </div>
     </div>
 </div>
-

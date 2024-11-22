@@ -34,6 +34,9 @@ export class EliminacionServicioComponent implements OnInit {
   }
 
   eliminarServicio(id: number) {
+
+/* Se elimina de la base de datos pero en el la alerta dice error. */
+
     if (confirm('¿Está seguro que desea eliminar este servicio?')) {
       this.servicioService.eliminarServicio(id).subscribe({
         next: () => {
@@ -51,3 +54,4 @@ export class EliminacionServicioComponent implements OnInit {
     }
   }
 }
+
