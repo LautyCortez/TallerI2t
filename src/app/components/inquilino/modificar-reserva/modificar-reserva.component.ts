@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ReservaService } from 'src/app/service/reserva.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReservaDTO } from 'src/app/models/reserva.model';
-import { MatDatepicker, MatDatepickerInput } from '@angular/material/datepicker';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-modificar-reserva',
@@ -13,8 +13,8 @@ import { MatDatepicker, MatDatepickerInput } from '@angular/material/datepicker'
 })
 export class ModificarReservaComponent implements OnInit {
   editarReservaForm: FormGroup;
- 
-  reservaId: any;
+  reservas: ReservaDTO[] = [];
+  selectedReservaId: number | null = null;
 
   @ViewChild('checkinPicker') checkinPicker!: MatDatepicker<Date>;
   @ViewChild('checkoutPicker') checkoutPicker!: MatDatepicker<Date>;
@@ -22,7 +22,6 @@ export class ModificarReservaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
     private reservaService: ReservaService,
     private snackBar: MatSnackBar
   ) {
@@ -37,24 +36,43 @@ export class ModificarReservaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cargarDatosReserva();
+    this.cargarReservasUsuario();
   }
 
-  cargarDatosReserva() {
+  cargarReservasUsuario() {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     const userId = usuario.id;
-  
+
     if (!userId) {
       this.snackBar.open('Error: Usuario no encontrado', 'Cerrar', {
         duration: 3000
       });
       return;
     }
-  
-    // Asegúrate de tener el idHospedaje disponible
-    const idHospedaje = this.reservaId;
-  
+
+    this.reservaService.obtenerReservasPorUsuario(userId).subscribe(reservas => {
+      this.reservas = reservas;
+    }, error => {
+      console.error(error);
+      this.snackBar.open('Error al cargar las reservas', 'Cerrar', {
+        duration: 3000
+      });
+    });
+  }
+
+  cargarDatosReserva(idHospedaje: number) {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const userId = usuario.id;
+
+    if (!userId) {
+      this.snackBar.open('Error: Usuario no encontrado', 'Cerrar', {
+        duration: 3000
+      });
+      return;
+    }
+
     this.reservaService.obtenerReservaPorId(idHospedaje, userId).subscribe(reserva => {
+      this.selectedReservaId = idHospedaje;
       this.editarReservaForm.patchValue({
         fechaCheckIn: reserva.fechaCheckIn,
         fechaCheckOut: reserva.fechaCheckOut,
@@ -72,6 +90,47 @@ export class ModificarReservaComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.editarReservaForm.invalid) {
+      return;
+    }
 
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const userId = usuario.id;
+
+    if (!userId || this.selectedReservaId === null) {
+      this.snackBar.open('Error: Usuario o reserva no encontrado', 'Cerrar', {
+        duration: 3000
+      });
+      return;
+    }
+
+    const idHospedaje = this.selectedReservaId;
+
+    const editReservaDTO: ReservaDTO = {
+      idHospedaje: idHospedaje,
+      idUsuario: userId,
+      fechaCheckIn: this.editarReservaForm.value.fechaCheckIn,
+      fechaCheckOut: this.editarReservaForm.value.fechaCheckOut,
+      cantNinos: this.editarReservaForm.value.cantNinos,
+      cantAdultos: this.editarReservaForm.value.cantAdultos,
+      cantBebes: this.editarReservaForm.value.cantBebes,
+      cantMascotas: this.editarReservaForm.value.cantMascotas,
+      importeTotal: 0 // Asigna el valor correcto si es necesario
+    };
+
+    this.reservaService.modificarReserva(idHospedaje, userId, editReservaDTO).subscribe(
+      response => {
+        this.snackBar.open('Reserva modificada con éxito', 'Cerrar', {
+          duration: 3000
+        });
+        this.cargarReservasUsuario(); // Recargar la lista de reservas
+      },
+      error => {
+        console.error(error);
+        this.snackBar.open('Error al modificar la reserva', 'Cerrar', {
+          duration: 3000
+        });
+      }
+    );
   }
 }

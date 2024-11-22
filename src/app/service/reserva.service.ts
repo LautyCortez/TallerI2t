@@ -19,14 +19,18 @@ export class ReservaService {
     return this.http.post<any>(`${this.apiUrl}/crear`, reservaDTO, { headers });
   }
 
-  obtenerReservas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  obtenerReservasPorUsuario(idUsuario: number): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/usuario/${idUsuario}`, { headers });
   }
 
-
-  
   obtenerReservaPorId(idHospedaje: number, idUsuario: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${idHospedaje}/${idUsuario}`);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/${idHospedaje}/${idUsuario}`, { headers });
   }
 
   modificarReserva(idHospedaje: number, idUsuario: number, editReservaDTO: any): Observable<any> {
@@ -43,10 +47,4 @@ export class ReservaService {
     });
     return this.http.delete<void>(`${this.apiUrl}/delete/${idHospedaje}/${idUsuario}`, { headers });
   }
-
-
-  obtenerReservasPorUsuario(idUsuario: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/usuario/${idUsuario}`);
-}
-
 }

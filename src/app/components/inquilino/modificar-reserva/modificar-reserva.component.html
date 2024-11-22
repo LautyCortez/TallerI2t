@@ -1,48 +1,72 @@
 <div class="modificar-reserva-container">
     <mat-card>
-        <mat-card-content>
-            <form [formGroup]="editarReservaForm" (ngSubmit)="onSubmit()">
-                <mat-form-field appearance="outline">
-                    <mat-label>Fecha de Check-in</mat-label>
-                    <input matInput [matDatepicker]="checkinPicker" formControlName="fechaCheckIn" required>
-                    <mat-error *ngIf="editarReservaForm.get('fechaCheckIn')?.hasError('required')">
-                        La fecha de check-in es requerida
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Fecha de Check-out</mat-label>
-                    <input matInput [matDatepicker]="checkoutPicker" formControlName="fechaCheckOut" required>
-                    <mat-error *ngIf="editarReservaForm.get('fechaCheckOut')?.hasError('required')">
-                        La fecha de check-out es requerida
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Adultos</mat-label>
-                    <input matInput type="number" formControlName="cantAdultos" min="1" required>
-                    <mat-error *ngIf="editarReservaForm.get('cantAdultos')?.hasError('required')">
-                        Cantidad de adultos requerida
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Niños</mat-label>
-                    <input matInput type="number" formControlName="cantNinos" min="0">
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Bebés</mat-label>
-                    <input matInput type="number" formControlName="cantBebes" min="0">
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Mascotas</mat-label>
-                    <input matInput type="number" formControlName="cantMascotas" min="0">
-                </mat-form-field>
-
-                <button mat-raised-button color="primary" type="submit">Guardar Cambios</button>
-            </form>
-        </mat-card-content>
+      <mat-card-content>
+        <div *ngIf="reservas.length > 0">
+          <h3>Seleccione una reserva para modificar</h3>
+          <ul>
+            <li *ngFor="let reserva of reservas">
+              <span>Reserva ID: {{ reserva.idHospedaje }} - Check-in: {{ reserva.fechaCheckIn | date }}</span>
+              <button mat-button (click)="cargarDatosReserva(reserva.idHospedaje)">
+                Editar
+              </button>
+            </li>
+          </ul>
+        </div>
+        <form [formGroup]="editarReservaForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Check-in</mat-label>
+            <input matInput [matDatepicker]="checkinPicker" formControlName="fechaCheckIn" required>
+            <mat-datepicker-toggle matSuffix [for]="checkinPicker"></mat-datepicker-toggle>
+            <mat-datepicker #checkinPicker></mat-datepicker>
+            <mat-error *ngIf="editarReservaForm.get('fechaCheckIn')?.hasError('required')">
+              La fecha de check-in es requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Check-out</mat-label>
+            <input matInput [matDatepicker]="checkoutPicker" formControlName="fechaCheckOut" required>
+            <mat-datepicker-toggle matSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
+            <mat-datepicker #checkoutPicker></mat-datepicker>
+            <mat-error *ngIf="editarReservaForm.get('fechaCheckOut')?.hasError('required')">
+              La fecha de check-out es requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Adultos</mat-label>
+            <input matInput type="number" formControlName="cantAdultos" min="1" required>
+            <mat-error *ngIf="editarReservaForm.get('cantAdultos')?.hasError('required')">
+              Cantidad de adultos requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Niños</mat-label>
+            <input matInput type="number" formControlName="cantNinos" min="0" required>
+            <mat-error *ngIf="editarReservaForm.get('cantNinos')?.hasError('required')">
+              Cantidad de niños requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Bebés</mat-label>
+            <input matInput type="number" formControlName="cantBebes" min="0" required>
+            <mat-error *ngIf="editarReservaForm.get('cantBebes')?.hasError('required')">
+              Cantidad de bebés requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Mascotas</mat-label>
+            <input matInput type="number" formControlName="cantMascotas" min="0" required>
+            <mat-error *ngIf="editarReservaForm.get('cantMascotas')?.hasError('required')">
+              Cantidad de mascotas requerida
+            </mat-error>
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit" [disabled]="!selectedReservaId">Modificar Reserva</button>
+        </form>
+      </mat-card-content>
     </mat-card>
-</div>
+  </div>
