@@ -1,46 +1,63 @@
-<form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-        <mat-label>Check-in</mat-label>
-        <input matInput [matDatepicker]="checkinPicker" formControlName="checkin" required>
-        <mat-datepicker-toggle matSuffix [for]="checkinPicker"></mat-datepicker-toggle>
-        <mat-datepicker #checkinPicker></mat-datepicker>
-    </mat-form-field>
+<div class="reserva-container">
+    <mat-card>
 
-    <mat-form-field>
-        <mat-label>Check-out</mat-label>
-        <input matInput [matDatepicker]="checkoutPicker" formControlName="checkout" required>
-        <mat-datepicker-toggle matSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
-        <mat-datepicker #checkoutPicker></mat-datepicker>
-    </mat-form-field>
+        <mat-card-content>
+            <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Check-in</mat-label>
+                        <input matInput [matDatepicker]="checkinPicker" formControlName="fechaCheckIn" required>
+                        <mat-datepicker-toggle matSuffix [for]="checkinPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #checkinPicker></mat-datepicker>
+                        <mat-error *ngIf="reservaForm.get('fechaCheckIn')?.hasError('required')">
+                            La fecha de check-in es requerida
+                        </mat-error>
+                    </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Adultos</mat-label>
-        <input matInput type="number" formControlName="adultos" required>
-    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Check-out</mat-label>
+                        <input matInput [matDatepicker]="checkoutPicker" formControlName="fechaCheckOut" required>
+                        <mat-datepicker-toggle matSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #checkoutPicker></mat-datepicker>
+                        <mat-error *ngIf="reservaForm.get('fechaCheckOut')?.hasError('required')">
+                            La fecha de check-out es requerida
+                        </mat-error>
+                    </mat-form-field>
+                </div>
 
-    <mat-form-field>
-        <mat-label>Niños</mat-label>
-        <input matInput type="number" formControlName="ninos">
-    </mat-form-field>
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Adultos</mat-label>
+                        <input matInput type="number" formControlName="cantAdultos" min="1" required>
+                        <mat-error *ngIf="reservaForm.get('cantAdultos')?.hasError('required')">
+                            Cantidad de adultos requerida
+                        </mat-error>
+                    </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Bebés</mat-label>
-        <input matInput type="number" formControlName="bebes">
-    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Niños</mat-label>
+                        <input matInput type="number" formControlName="cantNinos" min="0">
+                    </mat-form-field>
+                </div>
 
-    <mat-form-field>
-        <mat-label>Mascotas</mat-label>
-        <input matInput type="number" formControlName="mascotas">
-    </mat-form-field>
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Bebés</mat-label>
+                        <input matInput type="number" formControlName="cantBebes" min="0">
+                    </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Servicios Adicionales</mat-label>
-        <mat-select formControlName="servicios" multiple>
-            <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">
-                {{ servicio.nombre }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mascotas</mat-label>
+                        <input matInput type="number" formControlName="cantMascotas" min="0">
+                    </mat-form-field>
+                </div>
 
-    <button mat-raised-button color="primary" type="submit">Reservar</button>
-</form>
+                <div class="button-container">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!reservaForm.valid">
+                        Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

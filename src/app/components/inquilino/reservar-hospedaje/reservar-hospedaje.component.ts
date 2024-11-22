@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ReservaService } from 'src/app/service/reserva.service';
 import { ServicioService } from 'src/app/service/servicio.service';
+import { ReservaDTO } from 'src/app/models/reserva.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reservar-hospedaje',
@@ -12,58 +14,69 @@ import { ServicioService } from 'src/app/service/servicio.service';
 export class ReservarHospedajeComponent implements OnInit {
   reservaForm: FormGroup;
   servicios: any[] = [];
+  idHospedaje: number = 0;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private reservaService: ReservaService,
-    private servicioService: ServicioService
+    private servicioService: ServicioService,
+    private snackBar: MatSnackBar,
+    private servicio: ServicioService
   ) {
     this.reservaForm = this.fb.group({
-      checkin: ['', Validators.required],
-      checkout: ['', Validators.required],
-      adultos: [1, Validators.required],
-      ninos: [0],
-      bebes: [0],
-      mascotas: [0],
+      fechaCheckIn: ['', Validators.required],
+      fechaCheckOut: ['', Validators.required],
+      cantAdultos: [1, [Validators.required, Validators.min(1)]],
+      cantNinos: [0, [Validators.required, Validators.min(0)]],
+      cantBebes: [0, [Validators.required, Validators.min(0)]],
+      cantMascotas: [0, [Validators.required, Validators.min(0)]],
       servicios: [[]]
     });
   }
 
   ngOnInit() {
-    this.loadServicios();
-  }
-
-  loadServicios() {
-    this.servicioService.obtenerServicios().subscribe(data => {
-      this.servicios = data;
+    this.servicio.obtenerServicios();
+    // Obtener el ID del hospedaje de los parámetros de la ruta
+    this.route.params.subscribe(params => {
+      this.idHospedaje = +params['id'];
     });
   }
 
   onSubmit() {
     if (this.reservaForm.valid) {
-      const reservaData = {
-        idHospedaje: 1, // Reemplaza con el ID real del hospedaje
-        idUsuario: 1, // Reemplaza con el ID real del usuario
-        fechaCheckIn: this.reservaForm.value.checkin,
-        fechaCheckOut: this.reservaForm.value.checkout,
-        cantNinos: this.reservaForm.value.ninos,
-        cantAdultos: this.reservaForm.value.adultos,
-        cantBebes: this.reservaForm.value.bebes,
-        cantMascotas: this.reservaForm.value.mascotas,
-        importeTotal: 0 // Calcula el importe total si es necesario
+      const userId = Number(localStorage.getItem('userId'));
+      
+      const reservaDTO: ReservaDTO = {
+        idHospedaje: this.idHospedaje,
+        idUsuario: userId,
+        fechaCheckIn: this.reservaForm.value.fechaCheckIn,
+        fechaCheckOut: this.reservaForm.value.fechaCheckOut,
+        cantNinos: this.reservaForm.value.cantNinos,
+        cantAdultos: this.reservaForm.value.cantAdultos,
+        cantBebes: this.reservaForm.value.cantBebes,
+        cantMascotas: this.reservaForm.value.cantMascotas,
+        importeTotal: 0 // Este valor se calculará en el backend
       };
 
-      this.reservaService.crearReserva(reservaData).subscribe({
+      this.reservaService.crearReserva(reservaDTO).subscribe({
         next: (response) => {
-          console.log('Reserva creada:', response);
-          alert('Reserva creada con éxito');
+          this.snackBar.open('Reserva creada con éxito', 'Cerrar', {
+            duration: 3000
+          });
           this.router.navigate(['/dashboard']);
         },
         error: (error) => {
-          console.error('Error al crear la reserva:', error);
-          alert('Error al crear la reserva');
+          let mensaje = 'Error al crear la reserva';
+          if (error.status === 409) {
+            mensaje = 'El hospedaje no está disponible para las fechas seleccionadas';
+          }
+          this.snackBar.open(mensaje, 'Cerrar', {
+            duration: 3000
+          });
         }
       });
-    }};
+    }
+  }
 }
