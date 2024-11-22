@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ##Init Back
 
-mvn spring-boot:run
+mvn spring-boot:run  
 
 ## Running unit tests
 
