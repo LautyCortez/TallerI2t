@@ -63,26 +63,22 @@ export class EditarMisDatosComponent implements OnInit {
             fecha_nacimiento: this.usuarioForm.value.fecha_nacimiento
         };
 
-        const usuarioActual = this.authService.getCurrentUser();
-        if (usuarioActual && usuarioActual.id) {
-            this.usuarioService.actualizarUsuario(editUsuarioDTO, usuarioActual.id).subscribe({
-                next: () => {
-                    this.loading = false;
-                    this.mostrarMensaje('Cambios guardados con éxito');
-                    this.authService.saveUser({
-                        ...usuarioActual,
-                        ...editUsuarioDTO,
-                    });
-                },
-                error: (error) => {
-                    this.loading = false;
-                    this.mostrarMensaje('Error al guardar los datos');
-                    console.error(error);
-                }
-            });
-        }
+        this.loading = true;
+
+        this.usuarioService.actualizarUsuario(editUsuarioDTO).subscribe({
+          next: (response) => {
+              this.loading = false;
+              this.mostrarMensaje('Cambios guardados con éxito');
+              localStorage.setItem('usuario', JSON.stringify(response));
+          },
+          error: (error) => {
+              this.loading = false;
+              this.mostrarMensaje('Error al guardar los datos');
+              console.error(error);
+          }
+        });
     }
-  }
+}
 
   private mostrarMensaje(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {
