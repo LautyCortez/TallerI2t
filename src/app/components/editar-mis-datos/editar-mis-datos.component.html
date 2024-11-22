@@ -12,43 +12,26 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="nombre" required>
-                    <mat-error *ngIf="usuarioForm.get('nombre')?.hasError('required')">
-                        El nombre es requerido
-                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Apellido</mat-label>
                     <input matInput formControlName="apellido" required>
-                    <mat-error *ngIf="usuarioForm.get('apellido')?.hasError('required')">
-                        El apellido es requerido
-                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required>
-                    <mat-error *ngIf="usuarioForm.get('email')?.hasError('required')">
-                        El email es requerido
-                    </mat-error>
-                    <mat-error *ngIf="usuarioForm.get('email')?.hasError('email')">
-                        El email no es válido
-                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Fecha de Nacimiento</mat-label>
-                    <input matInput formControlName="fecha_nacimiento" type="date" required>
-                    <mat-error *ngIf="usuarioForm.get('fecha_nacimiento')?.hasError('required')">
-                        La fecha de nacimiento es requerida
-                    </mat-error>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
                 </mat-form-field>
 
-                <div class="button-container">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="!usuarioForm.valid || loading">
-                        {{loading ? 'Guardando...' : 'Guardar cambios'}}
-                    </button>
-                </div>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!usuarioForm.valid || loading">
+                    {{loading ? 'Guardando...' : 'Guardar cambios'}}
+                </button>
             </form>
         </mat-card-content>
     </mat-card>

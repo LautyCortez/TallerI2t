@@ -1,8 +1,8 @@
 export interface EditUsuarioDTO {
-    username: string;
+   /*  username: string; */
     email: string;
     nombre: string;
     /* telefono: number; */
     apellido: string;
-    fecha_nacimiento: Date;
+   /*  fecha_nacimiento: Date; */
   }
