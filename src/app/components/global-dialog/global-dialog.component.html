@@ -47,4 +47,26 @@
     <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
   </ng-container>
 
+<!-- DIALOGS DEL ADMINISTRADOR -->
+
+<ng-container *ngIf="MostrarDialogo === 'alta-servicio'">
+  <h2 id="titulo-dialogo">Alta de servicio</h2>
+  <p id="texto-dialogo">Selecciona una opción:</p>
+  <app-alta-servicio></app-alta-servicio>
+  <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+</ng-container>
+
+<ng-container *ngIf="MostrarDialogo === 'modificacion-servicio'">
+  <h2 id="titulo-dialogo">Modificacion de servicio</h2>
+  <p id="texto-dialogo">Selecciona una opción:</p>
+  <app-modificacion-servicio></app-modificacion-servicio>
+  <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+</ng-container>
+
+<ng-container *ngIf="MostrarDialogo === 'eliminacion-servicio'">
+  <h2 id="titulo-dialogo">Eliminacion de servicio</h2>
+  <p id="texto-dialogo">Selecciona una opción:</p>
+  <app-eliminacion-servicio></app-eliminacion-servicio>
+  <button mat-raised-button color="warn" (click)="onClose()">Cerrar</button>
+</ng-container>
 </div>
